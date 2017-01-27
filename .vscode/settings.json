@@ -1,0 +1,10 @@
+{
+    "haxe.displayServer": {
+        "arguments": [
+            "-v"
+        ]
+    },
+    "haxe.displayConfigurations": [
+        ["build.hxml"]
+    ]
+}

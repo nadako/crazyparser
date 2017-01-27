@@ -1,0 +1,6 @@
+-cp src
+-main Main
+-D analyzer-optimize
+-js main.js
+-lib hxnodejs
+# -dce full
