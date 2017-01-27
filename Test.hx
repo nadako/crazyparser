@@ -1,4 +1,6 @@
+/**
+    Some crap
+**/
+import some ;
 
- /*hi*/class Some { /*bye*/
- /*lead*/
-}
+class C {}

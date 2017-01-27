@@ -68,6 +68,14 @@ class Scanner {
                     pos++;
                     return mk(TkBraceClose);
 
+                case ".".code:
+                    pos++;
+                    return mk(TkDot);
+
+                case ";".code:
+                    pos++;
+                    return mk(TkSemicolon);
+
                 case _ if (isIdentStart(ch)):
                     pos++;
                     while (pos < end) {
@@ -154,6 +162,11 @@ class Scanner {
         var ident = tokenText();
         return mk(switch (ident) {
             case "class": TkKeyword(KwClass);
+            case "interface": TkKeyword(KwInterface);
+            case "abstract": TkKeyword(KwAbstract);
+            case "typedef": TkKeyword(KwTypedef);
+            case "import": TkKeyword(KwImport);
+            case "using": TkKeyword(KwUsing);
             default: TkIdent(ident);
         });
     }

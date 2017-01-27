@@ -11,6 +11,7 @@ class Node {
 
 enum NodeKind {
     NClassDecl(classDecl:ClassDecl);
+    NImportDecl(importDecl:ImportDecl);
 }
 
 typedef ClassDecl = {
@@ -20,3 +21,8 @@ typedef ClassDecl = {
     var closeBrace:Token;
 }
 
+typedef ImportDecl = {
+    var importKeyword:Token;
+    var identifier:Token;
+    var semicolon:Token;
+}

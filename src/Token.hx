@@ -21,9 +21,15 @@ enum TokenKind {
     TkIdent(ident:String);
     TkBraceOpen;
     TkBraceClose;
+    TkSemicolon;
+    TkDot;
 }
 
 enum Keyword {
     KwClass;
+    KwInterface;
+    KwAbstract;
+    KwTypedef;
+    KwImport;
+    KwUsing;
 }
-

@@ -1,3 +1,5 @@
+import Token;
+
 class Parser {
     var scanner:Scanner;
     var currentToken:Token;
@@ -6,25 +8,52 @@ class Parser {
         scanner = new Scanner(text);
     }
 
-    public function nextToken():Token {
+    function nextToken():Token {
         return currentToken = scanner.scan();
     }
 
-    public function expect(f:Token->Bool):Token {
+    function expect(f:Token->Bool):Token {
         var token = currentToken;
         if (!f(token))
-            throw 'Unexpected $token';
+            throw new UnexpectedToken(token);
         nextToken();
         return token;
     }
 
-    public function parse():Node {
-        nextToken();
+    function expectToken(kind:TokenKind):Token {
+        return expect(function(t) return t.kind == kind);
+    }
 
-        var keywordToken = expect(function(t) return t.kind.match(TkKeyword(KwClass)));
+    function expectKeyword(kw:Keyword):Token {
+        return expect(function(t) return switch (t.kind) {
+            case TkKeyword(foundKw) if (foundKw == kw): true;
+            default: false;
+        });
+    }
+
+    function parseList<T:Node>(parseElement:Void->T):Array<T> {
+        var result = [];
+        while (currentToken.kind != TkEof)  {
+            try {
+                result.push(parseElement());
+            } catch (e:UnexpectedToken) {
+                trace(e.token);
+                break;
+            }
+        }
+        return result;
+    }
+
+    public function parse():Array<Node> {
+        nextToken();
+        return parseList(parseModuleDecl);
+    }
+
+    function parseClass():Node {
+        var keywordToken = expectKeyword(KwClass);
         var nameToken = expect(function(t) return t.kind.match(TkIdent(_)));
-        var openBraceToken = expect(function(t) return t.kind.match(TkBraceOpen));
-        var closeBraceToken = expect(function(t) return t.kind.match(TkBraceClose));
+        var openBraceToken = expectToken(TkBraceOpen);
+        var closeBraceToken = expectToken(TkBraceClose);
         var node = new Node();
         node.kind = NClassDecl({
             classKeyword: keywordToken,
@@ -34,5 +63,37 @@ class Parser {
         });
         node.pos = new Position(keywordToken.pos.min, closeBraceToken.pos.max);
         return node;
+    }
+
+    function parseImport():Node {
+        var importToken = expectKeyword(KwImport);
+        var nameToken = expect(function(t) return t.kind.match(TkIdent(_)));
+        var semicolonToken = expectToken(TkSemicolon);
+        var node = new Node();
+        node.kind = NImportDecl({
+            importKeyword: importToken,
+            identifier: nameToken,
+            semicolon: semicolonToken,
+        });
+        node.pos = new Position(importToken.pos.min, semicolonToken.pos.max);
+        return node;
+    }
+
+    function parseModuleDecl():Node {
+        return switch (currentToken.kind) {
+            case TkKeyword(KwImport):
+                parseImport();
+            case TkKeyword(KwClass):
+                parseClass();
+            default:
+                throw new UnexpectedToken(currentToken);
+        }
+    }
+}
+
+class UnexpectedToken {
+    public var token:Token;
+    public function new(token) {
+        this.token = token;
     }
 }
