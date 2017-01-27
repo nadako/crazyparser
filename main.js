@@ -18,69 +18,43 @@ HxOverrides.cca = function(s,index) {
 	}
 	return x;
 };
-var Position = function(min,max) {
-	this.min = min;
-	this.max = max;
+var Main = function() { };
+Main.__name__ = true;
+Main.main = function() {
+	var root = new Parser(js_node_Fs.readFileSync("Test.hx",{ encoding : "utf8"})).parse();
+	var printToken = function(token) {
+		process.stdout.write(Std.string("\t" + Std.string(token)));
+		process.stdout.write("\n");
+		if(token.leadTrivia != null) {
+			var _g = 0;
+			var _g1 = token.leadTrivia;
+			while(_g < _g1.length) {
+				var trivia = _g1[_g];
+				++_g;
+				process.stdout.write(Std.string("\t\tLEAD: " + Std.string(trivia)));
+				process.stdout.write("\n");
+			}
+		}
+		if(token.trailTrivia != null) {
+			var _g2 = 0;
+			var _g11 = token.trailTrivia;
+			while(_g2 < _g11.length) {
+				var trivia1 = _g11[_g2];
+				++_g2;
+				process.stdout.write(Std.string("\t\tTRAIL: " + Std.string(trivia1)));
+				process.stdout.write("\n");
+			}
+		}
+	};
+	var cls = root.kind[2];
+	process.stdout.write(Std.string("NClassDecl " + Std.string(root.pos)));
+	process.stdout.write("\n");
+	printToken(cls.classKeyword);
+	printToken(cls.name);
+	printToken(cls.openBrace);
+	printToken(cls.closeBrace);
 };
-Position.__name__ = true;
-Position.prototype = {
-	toString: function() {
-		return "[" + this.min + ".." + this.max + ")";
-	}
-};
-var Token = function(kind,pos) {
-	this.kind = kind;
-	this.pos = pos;
-};
-Token.__name__ = true;
-Token.prototype = {
-	toString: function() {
-		return "" + Std.string(this.kind) + " " + Std.string(this.pos);
-	}
-};
-var TokenKind = { __ename__ : true, __constructs__ : ["TkEof","TkUnknown","TkKeyword","TkIdent","TkBraceOpen","TkBraceClose"] };
-TokenKind.TkEof = ["TkEof",0];
-TokenKind.TkEof.toString = $estr;
-TokenKind.TkEof.__enum__ = TokenKind;
-TokenKind.TkUnknown = ["TkUnknown",1];
-TokenKind.TkUnknown.toString = $estr;
-TokenKind.TkUnknown.__enum__ = TokenKind;
-TokenKind.TkKeyword = function(keyword) { var $x = ["TkKeyword",2,keyword]; $x.__enum__ = TokenKind; $x.toString = $estr; return $x; };
-TokenKind.TkIdent = function(ident) { var $x = ["TkIdent",3,ident]; $x.__enum__ = TokenKind; $x.toString = $estr; return $x; };
-TokenKind.TkBraceOpen = ["TkBraceOpen",4];
-TokenKind.TkBraceOpen.toString = $estr;
-TokenKind.TkBraceOpen.__enum__ = TokenKind;
-TokenKind.TkBraceClose = ["TkBraceClose",5];
-TokenKind.TkBraceClose.toString = $estr;
-TokenKind.TkBraceClose.__enum__ = TokenKind;
-var Keyword = { __ename__ : true, __constructs__ : ["KwClass"] };
-Keyword.KwClass = ["KwClass",0];
-Keyword.KwClass.toString = $estr;
-Keyword.KwClass.__enum__ = Keyword;
-var Trivia = function(kind,text,pos) {
-	this.kind = kind;
-	this.text = text;
-	this.pos = pos;
-};
-Trivia.__name__ = true;
-Trivia.prototype = {
-	toString: function() {
-		return "" + Std.string(this.kind) + " " + Std.string(this.pos);
-	}
-};
-var TriviaKind = { __ename__ : true, __constructs__ : ["TrWhitespace","TrEndOfLine","TrSingleLineComment","TrMultiLineComment"] };
-TriviaKind.TrWhitespace = ["TrWhitespace",0];
-TriviaKind.TrWhitespace.toString = $estr;
-TriviaKind.TrWhitespace.__enum__ = TriviaKind;
-TriviaKind.TrEndOfLine = ["TrEndOfLine",1];
-TriviaKind.TrEndOfLine.toString = $estr;
-TriviaKind.TrEndOfLine.__enum__ = TriviaKind;
-TriviaKind.TrSingleLineComment = ["TrSingleLineComment",2];
-TriviaKind.TrSingleLineComment.toString = $estr;
-TriviaKind.TrSingleLineComment.__enum__ = TriviaKind;
-TriviaKind.TrMultiLineComment = ["TrMultiLineComment",3];
-TriviaKind.TrMultiLineComment.toString = $estr;
-TriviaKind.TrMultiLineComment.__enum__ = TriviaKind;
+Math.__name__ = true;
 var Node = function() {
 };
 Node.__name__ = true;
@@ -91,6 +65,68 @@ Node.prototype = {
 };
 var NodeKind = { __ename__ : true, __constructs__ : ["NClassDecl"] };
 NodeKind.NClassDecl = function(classDecl) { var $x = ["NClassDecl",0,classDecl]; $x.__enum__ = NodeKind; $x.toString = $estr; return $x; };
+var Parser = function(text) {
+	this.scanner = new Scanner(text);
+};
+Parser.__name__ = true;
+Parser.prototype = {
+	nextToken: function() {
+		return this.currentToken = this.scanner.scan();
+	}
+	,expect: function(f) {
+		var token = this.currentToken;
+		if(!f(token)) {
+			throw new js__$Boot_HaxeError("Unexpected " + Std.string(token));
+		}
+		this.nextToken();
+		return token;
+	}
+	,parse: function() {
+		this.nextToken();
+		var keywordToken = this.expect(function(t) {
+			if(t.kind[1] == 2) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+		var nameToken = this.expect(function(t1) {
+			if(t1.kind[1] == 3) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+		var openBraceToken = this.expect(function(t2) {
+			if(t2.kind[1] == 4) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+		var closeBraceToken = this.expect(function(t3) {
+			if(t3.kind[1] == 5) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+		var node = new Node();
+		node.kind = NodeKind.NClassDecl({ classKeyword : keywordToken, name : nameToken, openBrace : openBraceToken, closeBrace : closeBraceToken});
+		node.pos = new Position(keywordToken.pos.min,closeBraceToken.pos.max);
+		return node;
+	}
+};
+var Position = function(min,max) {
+	this.min = min;
+	this.max = max;
+};
+Position.__name__ = true;
+Position.prototype = {
+	toString: function() {
+		return "[" + this.min + ".." + this.max + ")";
+	}
+};
 var Scanner = function(text) {
 	this.text = text;
 	this.pos = 0;
@@ -317,95 +353,6 @@ Scanner.prototype = {
 		return new Trivia(kind,this.text.substring(this.tokenStartPos,this.pos),new Position(this.tokenStartPos,this.pos));
 	}
 };
-var Parser = function(text) {
-	this.scanner = new Scanner(text);
-};
-Parser.__name__ = true;
-Parser.prototype = {
-	nextToken: function() {
-		return this.currentToken = this.scanner.scan();
-	}
-	,expect: function(f) {
-		var token = this.currentToken;
-		if(!f(token)) {
-			throw new js__$Boot_HaxeError("Unexpected " + Std.string(token));
-		}
-		this.nextToken();
-		return token;
-	}
-	,parse: function() {
-		this.nextToken();
-		var keywordToken = this.expect(function(t) {
-			if(t.kind[1] == 2) {
-				return true;
-			} else {
-				return false;
-			}
-		});
-		var nameToken = this.expect(function(t1) {
-			if(t1.kind[1] == 3) {
-				return true;
-			} else {
-				return false;
-			}
-		});
-		var openBraceToken = this.expect(function(t2) {
-			if(t2.kind[1] == 4) {
-				return true;
-			} else {
-				return false;
-			}
-		});
-		var closeBraceToken = this.expect(function(t3) {
-			if(t3.kind[1] == 5) {
-				return true;
-			} else {
-				return false;
-			}
-		});
-		var node = new Node();
-		node.kind = NodeKind.NClassDecl({ classKeyword : keywordToken, name : nameToken, openBrace : openBraceToken, closeBrace : closeBraceToken});
-		node.pos = new Position(keywordToken.pos.min,closeBraceToken.pos.max);
-		return node;
-	}
-};
-var Main = function() { };
-Main.__name__ = true;
-Main.main = function() {
-	var root = new Parser(js_node_Fs.readFileSync("Test.hx",{ encoding : "utf8"})).parse();
-	var printToken = function(token) {
-		process.stdout.write(Std.string("\t" + Std.string(token)));
-		process.stdout.write("\n");
-		if(token.leadTrivia != null) {
-			var _g = 0;
-			var _g1 = token.leadTrivia;
-			while(_g < _g1.length) {
-				var trivia = _g1[_g];
-				++_g;
-				process.stdout.write(Std.string("\t\tLEAD: " + Std.string(trivia)));
-				process.stdout.write("\n");
-			}
-		}
-		if(token.trailTrivia != null) {
-			var _g2 = 0;
-			var _g11 = token.trailTrivia;
-			while(_g2 < _g11.length) {
-				var trivia1 = _g11[_g2];
-				++_g2;
-				process.stdout.write(Std.string("\t\tTRAIL: " + Std.string(trivia1)));
-				process.stdout.write("\n");
-			}
-		}
-	};
-	var cls = root.kind[2];
-	process.stdout.write(Std.string("NClassDecl " + Std.string(root.pos)));
-	process.stdout.write("\n");
-	printToken(cls.classKeyword);
-	printToken(cls.name);
-	printToken(cls.openBrace);
-	printToken(cls.closeBrace);
-};
-Math.__name__ = true;
 var Std = function() { };
 Std.__name__ = true;
 Std.string = function(s) {
@@ -476,6 +423,59 @@ _$Sys_FileInput.prototype = $extend(haxe_io_Input.prototype,{
 		js_node_Fs.closeSync(this.fd);
 	}
 });
+var Token = function(kind,pos) {
+	this.kind = kind;
+	this.pos = pos;
+};
+Token.__name__ = true;
+Token.prototype = {
+	toString: function() {
+		return "" + Std.string(this.kind) + " " + Std.string(this.pos);
+	}
+};
+var TokenKind = { __ename__ : true, __constructs__ : ["TkEof","TkUnknown","TkKeyword","TkIdent","TkBraceOpen","TkBraceClose"] };
+TokenKind.TkEof = ["TkEof",0];
+TokenKind.TkEof.toString = $estr;
+TokenKind.TkEof.__enum__ = TokenKind;
+TokenKind.TkUnknown = ["TkUnknown",1];
+TokenKind.TkUnknown.toString = $estr;
+TokenKind.TkUnknown.__enum__ = TokenKind;
+TokenKind.TkKeyword = function(keyword) { var $x = ["TkKeyword",2,keyword]; $x.__enum__ = TokenKind; $x.toString = $estr; return $x; };
+TokenKind.TkIdent = function(ident) { var $x = ["TkIdent",3,ident]; $x.__enum__ = TokenKind; $x.toString = $estr; return $x; };
+TokenKind.TkBraceOpen = ["TkBraceOpen",4];
+TokenKind.TkBraceOpen.toString = $estr;
+TokenKind.TkBraceOpen.__enum__ = TokenKind;
+TokenKind.TkBraceClose = ["TkBraceClose",5];
+TokenKind.TkBraceClose.toString = $estr;
+TokenKind.TkBraceClose.__enum__ = TokenKind;
+var Keyword = { __ename__ : true, __constructs__ : ["KwClass"] };
+Keyword.KwClass = ["KwClass",0];
+Keyword.KwClass.toString = $estr;
+Keyword.KwClass.__enum__ = Keyword;
+var Trivia = function(kind,text,pos) {
+	this.kind = kind;
+	this.text = text;
+	this.pos = pos;
+};
+Trivia.__name__ = true;
+Trivia.prototype = {
+	toString: function() {
+		return "" + Std.string(this.kind) + " " + Std.string(this.pos);
+	}
+};
+var TriviaKind = { __ename__ : true, __constructs__ : ["TrWhitespace","TrEndOfLine","TrSingleLineComment","TrMultiLineComment"] };
+TriviaKind.TrWhitespace = ["TrWhitespace",0];
+TriviaKind.TrWhitespace.toString = $estr;
+TriviaKind.TrWhitespace.__enum__ = TriviaKind;
+TriviaKind.TrEndOfLine = ["TrEndOfLine",1];
+TriviaKind.TrEndOfLine.toString = $estr;
+TriviaKind.TrEndOfLine.__enum__ = TriviaKind;
+TriviaKind.TrSingleLineComment = ["TrSingleLineComment",2];
+TriviaKind.TrSingleLineComment.toString = $estr;
+TriviaKind.TrSingleLineComment.__enum__ = TriviaKind;
+TriviaKind.TrMultiLineComment = ["TrMultiLineComment",3];
+TriviaKind.TrMultiLineComment.toString = $estr;
+TriviaKind.TrMultiLineComment.__enum__ = TriviaKind;
 var haxe_io_Bytes = function() { };
 haxe_io_Bytes.__name__ = true;
 var haxe_io_Eof = function() {
