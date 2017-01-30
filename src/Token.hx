@@ -23,8 +23,18 @@ enum TokenKind {
     TkParenClose;
     TkBraceOpen;
     TkBraceClose;
+    TkColon;
     TkSemicolon;
     TkDot;
+    TkComma;
+    TkLt;
+    TkGt;
+    TkEquals;
+    TkPlus;
+    TkMinus;
+    TkAsterisk;
+    TkSlash;
+    TkInteger(s:String);
 }
 
 enum Keyword {

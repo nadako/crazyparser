@@ -75,7 +75,7 @@ class Scanner {
                             default:
                         }
                     }
-                    return mk(TkUnknown); // really TkSlash
+                    return mk(TkSlash);
 
                 case "{".code:
                     pos++;
@@ -97,9 +97,55 @@ class Scanner {
                     pos++;
                     return mk(TkDot);
 
+                case ",".code:
+                    pos++;
+                    return mk(TkComma);
+
+                case ":".code:
+                    pos++;
+                    return mk(TkColon);
+
                 case ";".code:
                     pos++;
                     return mk(TkSemicolon);
+
+                case "<".code:
+                    pos++;
+                    return mk(TkLt);
+
+                case ">".code:
+                    pos++;
+                    return mk(TkGt);
+
+                case "=".code:
+                    pos++;
+                    return mk(TkEquals);
+
+                case "+".code:
+                    pos++;
+                    return mk(TkPlus);
+
+                case "-".code:
+                    pos++;
+                    return mk(TkMinus);
+
+                case "*".code:
+                    pos++;
+                    return mk(TkAsterisk);
+
+                case "0".code:
+                    pos++;
+                    return mk(TkInteger("0"));
+
+                case "1".code | "2".code | "3".code | "4".code | "5".code | "6".code | "7".code | "8".code | "9".code:
+                    pos++;
+                    while (pos < end) {
+                        var ch = text.fastCodeAt(ch);
+                        if (!isNumber(ch))
+                            break;
+                        pos++;
+                    }
+                    return mk(TkInteger(text.substring(tokenStartPos, pos)));
 
                 case _ if (isIdentStart(ch)):
                     pos++;
@@ -113,6 +159,7 @@ class Scanner {
 
                 default:
                     pos++;
+                    trace('Unexpected character: ${String.fromCharCode(ch)}');
                     return mk(TkUnknown);
             }
         }
