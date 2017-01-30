@@ -2,7 +2,9 @@ class Node {
     public var kind:NodeKind;
     public var pos:Position;
 
-    public function new() {}
+    public function new(kind) {
+        this.kind = kind;
+    }
 
     public function toString() {
         return '$kind $pos';

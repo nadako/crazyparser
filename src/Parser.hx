@@ -54,13 +54,12 @@ class Parser {
         var nameToken = expect(function(t) return t.kind.match(TkIdent(_)));
         var openBraceToken = expectToken(TkBraceOpen);
         var closeBraceToken = expectToken(TkBraceClose);
-        var node = new Node();
-        node.kind = NClassDecl({
+        var node = new Node(NClassDecl({
             classKeyword: keywordToken,
             name: nameToken,
             openBrace: openBraceToken,
             closeBrace: closeBraceToken,
-        });
+        }));
         node.pos = new Position(keywordToken.pos.min, closeBraceToken.pos.max);
         return node;
     }
@@ -69,12 +68,11 @@ class Parser {
         var importToken = expectKeyword(KwImport);
         var nameToken = expect(function(t) return t.kind.match(TkIdent(_)));
         var semicolonToken = expectToken(TkSemicolon);
-        var node = new Node();
-        node.kind = NImportDecl({
+        var node = new Node(NImportDecl({
             importKeyword: importToken,
             identifier: nameToken,
             semicolon: semicolonToken,
-        });
+        }));
         node.pos = new Position(importToken.pos.min, semicolonToken.pos.max);
         return node;
     }
