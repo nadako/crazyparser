@@ -133,6 +133,10 @@ class Scanner {
                     pos++;
                     return mk(TkAsterisk);
 
+                case "?".code:
+                    pos++;
+                    return mk(TkQuestion);
+
                 case "0".code:
                     pos++;
                     return mk(TkInteger("0"));

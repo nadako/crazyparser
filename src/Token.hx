@@ -34,6 +34,7 @@ enum TokenKind {
     TkMinus;
     TkAsterisk;
     TkSlash;
+    TkQuestion;
     TkInteger(s:String);
 }
 
