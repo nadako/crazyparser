@@ -19,6 +19,8 @@ enum TokenKind {
     TkUnknown;
     TkKeyword(keyword:Keyword);
     TkIdent(ident:String);
+    TkParenOpen;
+    TkParenClose;
     TkBraceOpen;
     TkBraceClose;
     TkSemicolon;
@@ -30,6 +32,8 @@ enum Keyword {
     KwInterface;
     KwAbstract;
     KwTypedef;
+    KwFunction;
+    KwVar;
     KwImport;
     KwUsing;
 }

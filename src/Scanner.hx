@@ -45,18 +45,35 @@ class Scanner {
 
                 case "/".code:
                     pos++;
-                    if (pos < end && text.fastCodeAt(pos) == "*".code) { // multiline comment
-                        pos++;
-                        while (pos < end) {
-                            if (text.fastCodeAt(pos) == "*".code && pos + 1 < end && text.fastCodeAt(pos + 1) == "/".code) {
-                                pos += 2;
-                                break;
-                            }
-                            pos++;
+                    if (pos < end) {
+                        switch (text.fastCodeAt(pos)) {
+                            case "/".code: // single-line comment
+                                pos++;
+                                while (pos < end) {
+                                    if (text.fastCodeAt(pos) == "\r".code || text.fastCodeAt(pos) == "\n".code) {
+                                        break;
+                                    }
+                                    pos++;
+                                }
+                                if (trivia == null) trivia = [];
+                                trivia.push(mkTrivia(TrSingleLineComment));
+                                continue;
+
+                            case "*".code: // multi-line comment
+                                pos++;
+                                while (pos < end) {
+                                    if (text.fastCodeAt(pos) == "*".code && pos + 1 < end && text.fastCodeAt(pos + 1) == "/".code) {
+                                        pos += 2;
+                                        break;
+                                    }
+                                    pos++;
+                                }
+                                if (trivia == null) trivia = [];
+                                trivia.push(mkTrivia(TrMultiLineComment));
+                                continue;
+
+                            default:
                         }
-                        if (trivia == null) trivia = [];
-                        trivia.push(mkTrivia(TrMultiLineComment));
-                        continue;
                     }
                     return mk(TkUnknown); // really TkSlash
 
@@ -67,6 +84,14 @@ class Scanner {
                 case "}".code:
                     pos++;
                     return mk(TkBraceClose);
+
+                case "(".code:
+                    pos++;
+                    return mk(TkParenOpen);
+
+                case ")".code:
+                    pos++;
+                    return mk(TkParenClose);
 
                 case ".".code:
                     pos++;
@@ -124,18 +149,37 @@ class Scanner {
                     break;
 
                 case "/".code:
-                    if (pos + 1 < end && text.fastCodeAt(pos + 1) == "*".code) { // multiline comment
-                        pos += 2;
-                        while (pos < end) {
-                            if (text.fastCodeAt(pos) == "*".code && pos + 1 < end && text.fastCodeAt(pos + 1) == "/".code) {
+                    if (pos + 1 < end) {
+                        switch (text.fastCodeAt(pos + 1)) {
+                            case "/".code: // single-line comment
                                 pos += 2;
-                                break;
-                            }
-                            pos++;
+
+                                while (pos < end) {
+                                    if (text.fastCodeAt(pos) == "\r".code || text.fastCodeAt(pos) == "\n".code) {
+                                        break;
+                                    }
+                                    pos++;
+                                }
+                                if (result == null) result = [];
+                                result.push(mkTrivia(TrSingleLineComment));
+                                continue;
+
+                            case "*".code: // multi-line comment
+                                pos += 2;
+
+                                while (pos < end) {
+                                    if (text.fastCodeAt(pos) == "*".code && pos + 1 < end && text.fastCodeAt(pos + 1) == "/".code) {
+                                        pos += 2;
+                                        break;
+                                    }
+                                    pos++;
+                                }
+                                if (result == null) result = [];
+                                result.push(mkTrivia(TrMultiLineComment));
+                                continue;
+
+                            default:
                         }
-                        if (result == null) result = [];
-                        result.push(mkTrivia(TrMultiLineComment));
-                        continue;
                     }
                     break;
 
@@ -165,6 +209,8 @@ class Scanner {
             case "interface": TkKeyword(KwInterface);
             case "abstract": TkKeyword(KwAbstract);
             case "typedef": TkKeyword(KwTypedef);
+            case "function": TkKeyword(KwFunction);
+            case "var": TkKeyword(KwVar);
             case "import": TkKeyword(KwImport);
             case "using": TkKeyword(KwUsing);
             default: TkIdent(ident);
