@@ -36,6 +36,7 @@ enum TokenKind {
     TkSlash;
     TkQuestion;
     TkInteger(s:String);
+    TkString(s:String);
 }
 
 enum Keyword {

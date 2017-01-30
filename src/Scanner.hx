@@ -151,6 +151,10 @@ class Scanner {
                     }
                     return mk(TkInteger(text.substring(tokenStartPos, pos)));
 
+                case "\"".code:
+                    pos++;
+                    return mk(TkString(scanString()));
+
                 case _ if (isIdentStart(ch)):
                     pos++;
                     while (pos < end) {
@@ -166,6 +170,54 @@ class Scanner {
                     trace('Unexpected character: ${String.fromCharCode(ch)}');
                     return mk(TkUnknown);
             }
+        }
+    }
+
+    function scanString():String {
+        var result = "";
+        var start = pos;
+        while (true) {
+            if (pos >= end) {
+                result += text.substring(start, pos);
+                trace("UNTERMINATED STRING"); // TODO: this should emit a diagnostic and mark token as errored
+                break;
+            }
+            var ch = text.fastCodeAt(pos);
+            if (ch == "\"".code) {
+                result += text.substring(start, pos);
+                pos++;
+                break;
+            } else if (ch == "\\".code) {
+                result += text.substring(start, pos);
+                pos++;
+                result += scanEscapeSequence();
+                start = pos;
+            } else {
+                pos++;
+            }
+        }
+        return result;
+    }
+
+    function scanEscapeSequence():String {
+        if (pos >= end) {
+            trace("UNTERMINATED ESCAPE SEQUENCE"); // TODO: this should emit a diagnostic and mark token as errored
+            return "";
+        }
+        var ch = text.fastCodeAt(pos);
+        pos++;
+        return switch (ch) {
+            case "t".code:
+                "\t";
+            case "n".code:
+                "\n";
+            case "r".code:
+                "\r";
+            case "\"".code:
+                "\"";
+            default:
+                trace("INVALID ESCAPE SEQUENCE"); // TODO: this should emit a diagnostic and mark token as errored
+                "";
         }
     }
 
