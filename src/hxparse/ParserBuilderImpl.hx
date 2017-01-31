@@ -105,7 +105,7 @@ class ParserBuilderImpl {
 			case Simple(group):
 				var cl = group.map(makeInner);
 				cl.iter(function(c) {
-					c.expr = macro @:pos(c.expr.pos) { junk(); ${c.expr}; };
+					c.expr = macro { junk(); ${c.expr}; };
 				});
 				{
 					pos: def.pos,

@@ -23,13 +23,7 @@ class LexerError {
 }
 
 class HaxeLexer extends Lexer implements hxparse.RuleBuilder {
-
-
     static var buf = new StringBuf();
-
-    static var ident = "_*[a-z][a-zA-Z0-9_]*|_+|_+[0-9][_a-zA-Z0-9]*";
-    static var idtype = "_*[A-Z][a-zA-Z0-9_]*";
-
     static var integer = "([1-9][0-9]*)|0";
 
     // @:rule wraps the expression to the right of => with function(lexer) return
@@ -43,7 +37,6 @@ class HaxeLexer extends Lexer implements hxparse.RuleBuilder {
             var token = mk(lexer, TkConst(CString(unescape(buf.toString(), mkPos(pmin)))));
             token.pos.min = pmin.pmin; token;
         },
-        "#" + ident => mk(lexer, TkSharp(lexer.current.substr(1))),
         "$[_a-zA-Z0-9]*" => mk(lexer, TkDollar(lexer.current.substr(1))),
     ];
 

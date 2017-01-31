@@ -357,6 +357,37 @@ class Scanner {
                     }
                     return mkIdentOrKeyword();
 
+                case "#".code:
+                    pos++;
+                    while (pos < end) {
+                        var ch = input.fastCodeAt(pos);
+                        if (!isIdentPart(ch))
+                            break;
+                        pos++;
+                    }
+                    if (pos == tokenStart + 1) {
+                        trace('No directive after #'); // TODO: diagnostic
+                        return mk(TkInvalid);
+                    }
+                    var directive = input.substring(tokenStart + 1, pos);
+                    switch (directive) {
+                        case "if":
+                            continue;
+                        case "elseif":
+                            continue;
+                        case "else":
+                            continue;
+                        case "end":
+                            continue;
+                        case "error":
+                            continue;
+                        case "line":
+                            continue;
+                        default:
+                            trace('Unknown directive #$directive'); // TODO: diagnostic
+                            return mk(TkInvalid);
+                    }
+
                 default:
                     pos++;
                     // TODO: report diagnostic
