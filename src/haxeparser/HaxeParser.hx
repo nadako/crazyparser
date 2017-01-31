@@ -122,7 +122,7 @@ class HaxeTokenSource {
             var tk    = lexerToken();
             var state = getSt();
             switch [tk.kind,state] {
-                case [TkCommentLine(_) | TkComment(_) | TkSharp("line"),_]:
+                case [TkSharp("line"),_]:
                 case [TkSharp("error"),Consume]:
                     var nextTok = lexerToken();
                     switch nextTok.kind {

@@ -25,8 +25,6 @@ enum TokenKind {
     TkTilde;
     TkExclamation;
     TkBinop(op:Binop);
-    TkComment(s:String);
-    TkCommentLine(s:String);
     TkColon;
     TkSemicolon;
     TkDot;
@@ -87,8 +85,6 @@ class TokenPrinter {
             case TkExclamation: "!";
             case TkTilde: "~";
             case TkBinop(op): printBinop(op);
-            case TkComment(s): '/*$s*/';
-            case TkCommentLine(s): '//$s';
             case TkSemicolon: ";";
             case TkDot: ".";
             case TkColon: ":";

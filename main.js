@@ -143,7 +143,7 @@ haxeparser_Token.prototype = {
 	}
 	,__class__: haxeparser_Token
 };
-var haxeparser_TokenKind = { __ename__ : true, __constructs__ : ["TkKeyword","TkConst","TkSharp","TkDollar","TkPlusPlus","TkMinusMinus","TkTilde","TkExclamation","TkBinop","TkComment","TkCommentLine","TkColon","TkSemicolon","TkDot","TkComma","TkArrow","TkQuestion","TkAt","TkBracketOpen","TkBracketClose","TkBraceOpen","TkBraceClose","TkParenOpen","TkParenClose","TkEof","TkInvalid"] };
+var haxeparser_TokenKind = { __ename__ : true, __constructs__ : ["TkKeyword","TkConst","TkSharp","TkDollar","TkPlusPlus","TkMinusMinus","TkTilde","TkExclamation","TkBinop","TkColon","TkSemicolon","TkDot","TkComma","TkArrow","TkQuestion","TkAt","TkBracketOpen","TkBracketClose","TkBraceOpen","TkBraceClose","TkParenOpen","TkParenClose","TkEof","TkInvalid"] };
 haxeparser_TokenKind.TkKeyword = function(k) { var $x = ["TkKeyword",0,k]; $x.__enum__ = haxeparser_TokenKind; $x.toString = $estr; return $x; };
 haxeparser_TokenKind.TkConst = function(c) { var $x = ["TkConst",1,c]; $x.__enum__ = haxeparser_TokenKind; $x.toString = $estr; return $x; };
 haxeparser_TokenKind.TkSharp = function(s) { var $x = ["TkSharp",2,s]; $x.__enum__ = haxeparser_TokenKind; $x.toString = $estr; return $x; };
@@ -161,51 +161,49 @@ haxeparser_TokenKind.TkExclamation = ["TkExclamation",7];
 haxeparser_TokenKind.TkExclamation.toString = $estr;
 haxeparser_TokenKind.TkExclamation.__enum__ = haxeparser_TokenKind;
 haxeparser_TokenKind.TkBinop = function(op) { var $x = ["TkBinop",8,op]; $x.__enum__ = haxeparser_TokenKind; $x.toString = $estr; return $x; };
-haxeparser_TokenKind.TkComment = function(s) { var $x = ["TkComment",9,s]; $x.__enum__ = haxeparser_TokenKind; $x.toString = $estr; return $x; };
-haxeparser_TokenKind.TkCommentLine = function(s) { var $x = ["TkCommentLine",10,s]; $x.__enum__ = haxeparser_TokenKind; $x.toString = $estr; return $x; };
-haxeparser_TokenKind.TkColon = ["TkColon",11];
+haxeparser_TokenKind.TkColon = ["TkColon",9];
 haxeparser_TokenKind.TkColon.toString = $estr;
 haxeparser_TokenKind.TkColon.__enum__ = haxeparser_TokenKind;
-haxeparser_TokenKind.TkSemicolon = ["TkSemicolon",12];
+haxeparser_TokenKind.TkSemicolon = ["TkSemicolon",10];
 haxeparser_TokenKind.TkSemicolon.toString = $estr;
 haxeparser_TokenKind.TkSemicolon.__enum__ = haxeparser_TokenKind;
-haxeparser_TokenKind.TkDot = ["TkDot",13];
+haxeparser_TokenKind.TkDot = ["TkDot",11];
 haxeparser_TokenKind.TkDot.toString = $estr;
 haxeparser_TokenKind.TkDot.__enum__ = haxeparser_TokenKind;
-haxeparser_TokenKind.TkComma = ["TkComma",14];
+haxeparser_TokenKind.TkComma = ["TkComma",12];
 haxeparser_TokenKind.TkComma.toString = $estr;
 haxeparser_TokenKind.TkComma.__enum__ = haxeparser_TokenKind;
-haxeparser_TokenKind.TkArrow = ["TkArrow",15];
+haxeparser_TokenKind.TkArrow = ["TkArrow",13];
 haxeparser_TokenKind.TkArrow.toString = $estr;
 haxeparser_TokenKind.TkArrow.__enum__ = haxeparser_TokenKind;
-haxeparser_TokenKind.TkQuestion = ["TkQuestion",16];
+haxeparser_TokenKind.TkQuestion = ["TkQuestion",14];
 haxeparser_TokenKind.TkQuestion.toString = $estr;
 haxeparser_TokenKind.TkQuestion.__enum__ = haxeparser_TokenKind;
-haxeparser_TokenKind.TkAt = ["TkAt",17];
+haxeparser_TokenKind.TkAt = ["TkAt",15];
 haxeparser_TokenKind.TkAt.toString = $estr;
 haxeparser_TokenKind.TkAt.__enum__ = haxeparser_TokenKind;
-haxeparser_TokenKind.TkBracketOpen = ["TkBracketOpen",18];
+haxeparser_TokenKind.TkBracketOpen = ["TkBracketOpen",16];
 haxeparser_TokenKind.TkBracketOpen.toString = $estr;
 haxeparser_TokenKind.TkBracketOpen.__enum__ = haxeparser_TokenKind;
-haxeparser_TokenKind.TkBracketClose = ["TkBracketClose",19];
+haxeparser_TokenKind.TkBracketClose = ["TkBracketClose",17];
 haxeparser_TokenKind.TkBracketClose.toString = $estr;
 haxeparser_TokenKind.TkBracketClose.__enum__ = haxeparser_TokenKind;
-haxeparser_TokenKind.TkBraceOpen = ["TkBraceOpen",20];
+haxeparser_TokenKind.TkBraceOpen = ["TkBraceOpen",18];
 haxeparser_TokenKind.TkBraceOpen.toString = $estr;
 haxeparser_TokenKind.TkBraceOpen.__enum__ = haxeparser_TokenKind;
-haxeparser_TokenKind.TkBraceClose = ["TkBraceClose",21];
+haxeparser_TokenKind.TkBraceClose = ["TkBraceClose",19];
 haxeparser_TokenKind.TkBraceClose.toString = $estr;
 haxeparser_TokenKind.TkBraceClose.__enum__ = haxeparser_TokenKind;
-haxeparser_TokenKind.TkParenOpen = ["TkParenOpen",22];
+haxeparser_TokenKind.TkParenOpen = ["TkParenOpen",20];
 haxeparser_TokenKind.TkParenOpen.toString = $estr;
 haxeparser_TokenKind.TkParenOpen.__enum__ = haxeparser_TokenKind;
-haxeparser_TokenKind.TkParenClose = ["TkParenClose",23];
+haxeparser_TokenKind.TkParenClose = ["TkParenClose",21];
 haxeparser_TokenKind.TkParenClose.toString = $estr;
 haxeparser_TokenKind.TkParenClose.__enum__ = haxeparser_TokenKind;
-haxeparser_TokenKind.TkEof = ["TkEof",24];
+haxeparser_TokenKind.TkEof = ["TkEof",22];
 haxeparser_TokenKind.TkEof.toString = $estr;
 haxeparser_TokenKind.TkEof.__enum__ = haxeparser_TokenKind;
-haxeparser_TokenKind.TkInvalid = ["TkInvalid",25];
+haxeparser_TokenKind.TkInvalid = ["TkInvalid",23];
 haxeparser_TokenKind.TkInvalid.toString = $estr;
 haxeparser_TokenKind.TkInvalid.__enum__ = haxeparser_TokenKind;
 var haxeparser_TokenPrinter = function() { };
@@ -293,38 +291,34 @@ haxeparser_TokenPrinter.toString = function(kind) {
 	case 8:
 		return haxeparser_TokenPrinter.printBinop(kind[2]);
 	case 9:
-		return "/*" + kind[2] + "*/";
-	case 10:
-		return "//" + kind[2];
-	case 11:
 		return ":";
-	case 12:
+	case 10:
 		return ";";
-	case 13:
+	case 11:
 		return ".";
-	case 14:
+	case 12:
 		return ",";
-	case 15:
+	case 13:
 		return "->";
-	case 16:
+	case 14:
 		return "?";
-	case 17:
+	case 15:
 		return "@";
-	case 18:
+	case 16:
 		return "[";
-	case 19:
+	case 17:
 		return "]";
-	case 20:
+	case 18:
 		return "{";
-	case 21:
+	case 19:
 		return "}";
-	case 22:
+	case 20:
 		return "(";
-	case 23:
+	case 21:
 		return ")";
-	case 24:
+	case 22:
 		return "<eof>";
-	case 25:
+	case 23:
 		return "<invalid>";
 	}
 };
@@ -913,13 +907,13 @@ haxeparser_HaxeCondParser.prototype = $extend(hxparse_Parser_$haxeparser_$Scanne
 			this.token = this.token.next;
 			var o = this.parseMacroCond(allowOp);
 			return { tk : o.tk, expr : haxeparser_HaxeParser.makeUnop(haxeparser_Unop.OpNot,o.expr,p1)};
-		case 22:
+		case 20:
 			var p11 = _g.pos;
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			var o1 = this.parseMacroCond(true);
 			var _g1 = this.peek(0);
-			if(_g1.kind[1] == 23) {
+			if(_g1.kind[1] == 21) {
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				var e = { expr : haxeparser_ExprDef.EParenthesis(o1.expr), pos : haxeparser_HaxeParser.punion(p11,_g1.pos)};
@@ -1091,9 +1085,7 @@ haxeparser_HaxeTokenSource.prototype = {
 					}
 				}
 				break;
-			case 9:case 10:
-				break;
-			case 24:
+			case 22:
 				if(state == 0) {
 					return tk;
 				} else {
@@ -1129,7 +1121,7 @@ haxeparser_HaxeTokenSource.prototype = {
 				default:
 				}
 				break;
-			case 24:
+			case 22:
 				throw new js__$Boot_HaxeError("unclosed macro");
 				break;
 			default:
@@ -1854,7 +1846,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 		}
 	}
 	,comma: function() {
-		if(this.peek(0).kind[1] == 14) {
+		if(this.peek(0).kind[1] == 12) {
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			return null;
@@ -1865,7 +1857,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 	,semicolon: function() {
 		if(this.last.kind == haxeparser_TokenKind.TkBraceClose) {
 			var _g = this.peek(0);
-			if(_g.kind[1] == 12) {
+			if(_g.kind[1] == 10) {
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				return _g.pos;
@@ -1874,7 +1866,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 			}
 		} else {
 			var _g1 = this.peek(0);
-			if(_g1.kind[1] == 12) {
+			if(_g1.kind[1] == 10) {
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				return _g1.pos;
@@ -1897,7 +1889,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 				var p = this.parsePackage();
 				this.semicolon();
 				var l = this.parseTypeDecls(p,[]);
-				if(this.peek(0).kind[1] == 24) {
+				if(this.peek(0).kind[1] == 22) {
 					this.last = this.token.elt;
 					this.token = this.token.next;
 					return { pack : p, decls : l};
@@ -1906,7 +1898,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 				}
 			} else {
 				var l1 = this.parseTypeDecls([],[]);
-				if(this.peek(0).kind[1] == 24) {
+				if(this.peek(0).kind[1] == 22) {
 					this.last = this.token.elt;
 					this.token = this.token.next;
 					return { pack : [], decls : l1};
@@ -1916,7 +1908,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 			}
 		} else {
 			var l2 = this.parseTypeDecls([],[]);
-			if(this.peek(0).kind[1] == 24) {
+			if(this.peek(0).kind[1] == 22) {
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				return { pack : [], decls : l2};
@@ -1955,12 +1947,12 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 					var flags = this.parseEnumFlags();
 					var name = this.typeName();
 					var tl = this.parseConstraintParams();
-					if(this.peek(0).kind[1] == 20) {
+					if(this.peek(0).kind[1] == 18) {
 						this.last = this.token.elt;
 						this.token = this.token.next;
 						var l = this.parseRepeat($bind(this,this.parseEnum));
 						var _g1 = this.peek(0);
-						if(_g1.kind[1] == 21) {
+						if(_g1.kind[1] == 19) {
 							var p2 = _g1.pos;
 							this.last = this.token.elt;
 							this.token = this.token.next;
@@ -1981,7 +1973,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 							var name1 = this.typeName();
 							var tl1 = this.parseConstraintParams();
 							var hl = this.parseRepeat($bind(this,this.parseClassHerit));
-							if(this.peek(0).kind[1] == 20) {
+							if(this.peek(0).kind[1] == 18) {
 								this.last = this.token.elt;
 								this.token = this.token.next;
 								var fl = this.parseClassFields(false,flags1.pos);
@@ -2010,7 +2002,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 												this.last = this.token.elt;
 												this.token = this.token.next;
 												var t = this.parseComplexType();
-												if(this.peek(0).kind[1] == 12) {
+												if(this.peek(0).kind[1] == 10) {
 													this.last = this.token.elt;
 													this.token = this.token.next;
 												}
@@ -2032,7 +2024,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 										var tl3 = this.parseConstraintParams();
 										var st = this.parseAbstractSubtype();
 										var sl = this.parseRepeat($bind(this,this.parseAbstractRelations));
-										if(this.peek(0).kind[1] == 20) {
+										if(this.peek(0).kind[1] == 18) {
 											this.last = this.token.elt;
 											this.token = this.token.next;
 											var fl1 = this.parseClassFields(false,p12);
@@ -2070,12 +2062,12 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 				var flags3 = this.parseEnumFlags();
 				var name4 = this.typeName();
 				var tl4 = this.parseConstraintParams();
-				if(this.peek(0).kind[1] == 20) {
+				if(this.peek(0).kind[1] == 18) {
 					this.last = this.token.elt;
 					this.token = this.token.next;
 					var l1 = this.parseRepeat($bind(this,this.parseEnum));
 					var _g4 = this.peek(0);
-					if(_g4.kind[1] == 21) {
+					if(_g4.kind[1] == 19) {
 						var p22 = _g4.pos;
 						this.last = this.token.elt;
 						this.token = this.token.next;
@@ -2096,7 +2088,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 						var name5 = this.typeName();
 						var tl5 = this.parseConstraintParams();
 						var hl1 = this.parseRepeat($bind(this,this.parseClassHerit));
-						if(this.peek(0).kind[1] == 20) {
+						if(this.peek(0).kind[1] == 18) {
 							this.last = this.token.elt;
 							this.token = this.token.next;
 							var fl2 = this.parseClassFields(false,flags4.pos);
@@ -2125,7 +2117,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 											this.last = this.token.elt;
 											this.token = this.token.next;
 											var t1 = this.parseComplexType();
-											if(this.peek(0).kind[1] == 12) {
+											if(this.peek(0).kind[1] == 10) {
 												this.last = this.token.elt;
 												this.token = this.token.next;
 											}
@@ -2147,7 +2139,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 									var tl7 = this.parseConstraintParams();
 									var st1 = this.parseAbstractSubtype();
 									var sl1 = this.parseRepeat($bind(this,this.parseAbstractRelations));
-									if(this.peek(0).kind[1] == 20) {
+									if(this.peek(0).kind[1] == 18) {
 										this.last = this.token.elt;
 										this.token = this.token.next;
 										var fl3 = this.parseClassFields(false,p14);
@@ -2193,7 +2185,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 		var name = optName();
 		var tl = this.parseConstraintParams();
 		var hl = this.psep(haxeparser_TokenKind.TkComma,$bind(this,this.parseClassHerit));
-		if(this.peek(0).kind[1] == 20) {
+		if(this.peek(0).kind[1] == 18) {
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			var fl = this.parseClassFields(false,flags.pos);
@@ -2232,7 +2224,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 							this.last = this.token.elt;
 							this.token = this.token.next;
 							var _g12 = this.peek(0);
-							if(_g12.kind[1] == 12) {
+							if(_g12.kind[1] == 10) {
 								this.last = this.token.elt;
 								this.token = this.token.next;
 								return { decl : haxeparser_TypeDef.EImport(acc,haxeparser_ImportMode.IAsName(name)), pos : _g12.pos};
@@ -2261,7 +2253,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 								this.last = this.token.elt;
 								this.token = this.token.next;
 								var _g14 = this.peek(0);
-								if(_g14.kind[1] == 12) {
+								if(_g14.kind[1] == 10) {
 									this.last = this.token.elt;
 									this.token = this.token.next;
 									return { decl : haxeparser_TypeDef.EImport(acc,haxeparser_ImportMode.IAsName(name1)), pos : _g14.pos};
@@ -2281,11 +2273,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 					throw new js__$Boot_HaxeError(new hxparse_Unexpected(this.peek(0),this.stream.curPos()));
 				}
 				break;
-			case 12:
+			case 10:
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				return { decl : haxeparser_TypeDef.EImport(acc,haxeparser_ImportMode.INormal), pos : _g1.pos};
-			case 13:
+			case 11:
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				var _g15 = this.peek(0);
@@ -2320,7 +2312,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 						this.last = this.token.elt;
 						this.token = this.token.next;
 						var _g16 = this.peek(0);
-						if(_g16.kind[1] == 12) {
+						if(_g16.kind[1] == 10) {
 							this.last = this.token.elt;
 							this.token = this.token.next;
 							return { decl : haxeparser_TypeDef.EImport(acc,haxeparser_ImportMode.IAll), pos : _g16.pos};
@@ -2364,11 +2356,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 		}
 	}
 	,parseAbstractSubtype: function() {
-		if(this.peek(0).kind[1] == 22) {
+		if(this.peek(0).kind[1] == 20) {
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			var t = this.parseComplexType();
-			if(this.peek(0).kind[1] == 23) {
+			if(this.peek(0).kind[1] == 21) {
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				return t;
@@ -2386,7 +2378,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 		var l = this.parseClassFieldResume(tdecl);
 		var p2;
 		var _g = this.peek(0);
-		if(_g.kind[1] == 21) {
+		if(_g.kind[1] == 19) {
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			p2 = _g.pos;
@@ -2419,12 +2411,12 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 	}
 	,parseMetaParams: function(pname) {
 		var _g = this.peek(0);
-		if(_g.kind[1] == 22) {
+		if(_g.kind[1] == 20) {
 			if(_g.pos.min == pname.max) {
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				var params = this.psep(haxeparser_TokenKind.TkComma,$bind(this,this.expr));
-				if(this.peek(0).kind[1] == 23) {
+				if(this.peek(0).kind[1] == 21) {
 					this.last = this.token.elt;
 					this.token = this.token.next;
 					return params;
@@ -2439,7 +2431,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 		}
 	}
 	,parseMetaEntry: function() {
-		if(this.peek(0).kind[1] == 17) {
+		if(this.peek(0).kind[1] == 15) {
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			var name = this.metaName();
@@ -2476,7 +2468,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 				throw new js__$Boot_HaxeError(new hxparse_NoMatch(this.stream.curPos(),this.peek(0)));
 			}
 			break;
-		case 11:
+		case 9:
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			var _g1 = this.peek(0);
@@ -2537,7 +2529,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 		}
 	}
 	,parseTypeHint: function() {
-		if(this.peek(0).kind[1] == 11) {
+		if(this.peek(0).kind[1] == 9) {
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			return this.parseComplexType();
@@ -2565,7 +2557,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				var t = this.parseTypePath();
-				if(this.peek(0).kind[1] == 14) {
+				if(this.peek(0).kind[1] == 12) {
 					this.last = this.token.elt;
 					this.token = this.token.next;
 					return t;
@@ -2582,11 +2574,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 	,parseComplexTypeInner: function() {
 		var _g = this.peek(0);
 		switch(_g.kind[1]) {
-		case 16:
+		case 14:
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			return haxeparser_ComplexType.TOptional(this.parseComplexTypeInner());
-		case 20:
+		case 18:
 			var p1 = _g.pos;
 			this.last = this.token.elt;
 			this.token = this.token.next;
@@ -2630,11 +2622,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 				} else throw(_);
 			}
 			break;
-		case 22:
+		case 20:
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			var t1 = this.parseComplexType();
-			if(this.peek(0).kind[1] == 23) {
+			if(this.peek(0).kind[1] == 21) {
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				return haxeparser_ComplexType.TParent(t1);
@@ -2653,12 +2645,12 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 		var ident = this.dollarIdentMacro(pack);
 		if(haxeparser_HaxeParser.isLowerIdent(ident.name)) {
 			switch(this.peek(0).kind[1]) {
-			case 12:
+			case 10:
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				throw new js__$Boot_HaxeError(new haxeparser_ParserError(haxeparser_ParserErrorMsg.Custom("Type name should start with an uppercase letter"),ident.pos));
 				break;
-			case 13:
+			case 11:
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				return this.parseTypePath1(haxeparser_HaxeParser.apush(pack,ident.name));
@@ -2667,7 +2659,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 			}
 		} else {
 			var sub;
-			if(this.peek(0).kind[1] == 13) {
+			if(this.peek(0).kind[1] == 11) {
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				var _g = this.peek(0);
@@ -2740,13 +2732,13 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 	}
 	,parseTypePathOrConst: function() {
 		var _g = this.peek(0);
-		if(_g.kind[1] == 18) {
+		if(_g.kind[1] == 16) {
 			var p1 = _g.pos;
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			var l = this.parseArrayDecl();
 			var _g1 = this.peek(0);
-			if(_g1.kind[1] == 19) {
+			if(_g1.kind[1] == 17) {
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				return haxeparser_TypeParam.TPExpr({ expr : haxeparser_ExprDef.EArrayDecl(l), pos : haxeparser_HaxeParser.punion(p1,_g1.pos)});
@@ -2779,7 +2771,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 		}
 	}
 	,parseComplexTypeNext: function(t) {
-		if(this.peek(0).kind[1] == 15) {
+		if(this.peek(0).kind[1] == 13) {
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			var t2 = this.parseComplexType();
@@ -2801,11 +2793,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 			};
 			var _g = this.peek(0);
 			switch(_g.kind[1]) {
-			case 14:
+			case 12:
 				var p21 = _g.pos;
 				this.last = this.token.elt;
 				this.token = this.token.next;
-				if(this.peek(0).kind[1] == 21) {
+				if(this.peek(0).kind[1] == 19) {
 					this.last = this.token.elt;
 					this.token = this.token.next;
 					return next(p21,[]);
@@ -2820,7 +2812,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 					}
 				}
 				break;
-			case 21:
+			case 19:
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				return next(_g.pos,[]);
@@ -2830,7 +2822,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 		} catch( _1 ) {
 			if (_1 instanceof js__$Boot_HaxeError) _1 = _1.val;
 			if( js_Boot.__instanceof(_1,hxparse_NoMatch) ) {
-				if(this.peek(0).kind[1] == 16) {
+				if(this.peek(0).kind[1] == 14) {
 					if(!opt) {
 						this.last = this.token.elt;
 						this.token = this.token.next;
@@ -2849,11 +2841,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 		var name = this.anyEnumIdent();
 		var params = this.parseConstraintParams();
 		var args;
-		if(this.peek(0).kind[1] == 22) {
+		if(this.peek(0).kind[1] == 20) {
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			var l = this.psep(haxeparser_TokenKind.TkComma,$bind(this,this.parseEnumParam));
-			if(this.peek(0).kind[1] == 23) {
+			if(this.peek(0).kind[1] == 21) {
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				args = l;
@@ -2876,7 +2868,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 		return { name : name.name, meta : meta, args : args, params : params, type : t, pos : haxeparser_HaxeParser.punion(name.pos,p2)};
 	}
 	,parseEnumParam: function() {
-		if(this.peek(0).kind[1] == 16) {
+		if(this.peek(0).kind[1] == 14) {
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			var name = this.ident();
@@ -2901,11 +2893,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 				this.token = this.token.next;
 				var name = this.parseFunName();
 				var pl = this.parseConstraintParams();
-				if(this.peek(0).kind[1] == 22) {
+				if(this.peek(0).kind[1] == 20) {
 					this.last = this.token.elt;
 					this.token = this.token.next;
 					var al1 = this.psep(haxeparser_TokenKind.TkComma,$bind(this,this.parseFunParam));
-					if(this.peek(0).kind[1] == 23) {
+					if(this.peek(0).kind[1] == 21) {
 						this.last = this.token.elt;
 						this.token = this.token.next;
 						var t = this.parseTypeOpt();
@@ -2918,7 +2910,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 							if (_ instanceof js__$Boot_HaxeError) _ = _.val;
 							if( js_Boot.__instanceof(_,hxparse_NoMatch) ) {
 								var _g1 = this.peek(0);
-								if(_g1.kind[1] == 12) {
+								if(_g1.kind[1] == 10) {
 									this.last = this.token.elt;
 									this.token = this.token.next;
 									e = { expr : null, pos : _g1.pos};
@@ -2940,15 +2932,15 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				var name1 = this.ident();
-				if(this.peek(0).kind[1] == 22) {
+				if(this.peek(0).kind[1] == 20) {
 					this.last = this.token.elt;
 					this.token = this.token.next;
 					var i1 = this.propertyIdent();
-					if(this.peek(0).kind[1] == 14) {
+					if(this.peek(0).kind[1] == 12) {
 						this.last = this.token.elt;
 						this.token = this.token.next;
 						var i2 = this.propertyIdent();
-						if(this.peek(0).kind[1] == 23) {
+						if(this.peek(0).kind[1] == 21) {
 							this.last = this.token.elt;
 							this.token = this.token.next;
 							var t1 = this.parseTypeOpt();
@@ -2964,7 +2956,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 									throw new js__$Boot_HaxeError(new hxparse_Unexpected(this.peek(0),this.stream.curPos()));
 								}
 								break;
-							case 12:
+							case 10:
 								this.last = this.token.elt;
 								this.token = this.token.next;
 								e2 = { expr : null, pos : _g2.pos};
@@ -2993,7 +2985,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 							throw new js__$Boot_HaxeError(new hxparse_Unexpected(this.peek(0),this.stream.curPos()));
 						}
 						break;
-					case 12:
+					case 10:
 						this.last = this.token.elt;
 						this.token = this.token.next;
 						e3 = { expr : null, pos : _g3.pos};
@@ -3159,7 +3151,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 	}
 	,parseFunParam: function() {
 		var meta = this.parseMeta();
-		if(this.peek(0).kind[1] == 16) {
+		if(this.peek(0).kind[1] == 14) {
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			var id = this.ident();
@@ -3188,7 +3180,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 		}
 	}
 	,parseFunParamType: function() {
-		if(this.peek(0).kind[1] == 16) {
+		if(this.peek(0).kind[1] == 14) {
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			var id = this.ident();
@@ -3231,14 +3223,14 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 		var name = this.typeName();
 		var params = [];
 		var ctl;
-		if(this.peek(0).kind[1] == 11) {
+		if(this.peek(0).kind[1] == 9) {
 			this.last = this.token.elt;
 			this.token = this.token.next;
-			if(this.peek(0).kind[1] == 22) {
+			if(this.peek(0).kind[1] == 20) {
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				var l = this.psep(haxeparser_TokenKind.TkComma,$bind(this,this.parseComplexType));
-				if(this.peek(0).kind[1] == 23) {
+				if(this.peek(0).kind[1] == 21) {
 					this.last = this.token.elt;
 					this.token = this.token.next;
 					ctl = l;
@@ -3301,7 +3293,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 		}
 	}
 	,block2: function(name,ident,p) {
-		if(this.peek(0).kind[1] == 11) {
+		if(this.peek(0).kind[1] == 9) {
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			var e = this.expr();
@@ -3345,12 +3337,12 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 	}
 	,parseObjDecl: function() {
 		var acc = [];
-		while(true) if(this.peek(0).kind[1] == 14) {
+		while(true) if(this.peek(0).kind[1] == 12) {
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			try {
 				var id = this.ident();
-				if(this.peek(0).kind[1] == 11) {
+				if(this.peek(0).kind[1] == 9) {
 					this.last = this.token.elt;
 					this.token = this.token.next;
 					var e = this.expr();
@@ -3367,7 +3359,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 							var name = _g.kind[2][2];
 							this.last = this.token.elt;
 							this.token = this.token.next;
-							if(this.peek(0).kind[1] == 11) {
+							if(this.peek(0).kind[1] == 9) {
 								this.last = this.token.elt;
 								this.token = this.token.next;
 								var e1 = this.expr();
@@ -3394,7 +3386,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 		while(true) {
 			try {
 				acc.push(this.expr());
-				if(this.peek(0).kind[1] == 14) {
+				if(this.peek(0).kind[1] == 12) {
 					this.last = this.token.elt;
 					this.token = this.token.next;
 				} else {
@@ -3491,7 +3483,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 				}
 			}
 			break;
-		case 11:
+		case 9:
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			var t = this.parseComplexType();
@@ -3529,13 +3521,13 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 						this.last = this.token.elt;
 						this.token = this.token.next;
 						var t = this.parseTypePath();
-						if(this.peek(0).kind[1] == 22) {
+						if(this.peek(0).kind[1] == 20) {
 							this.last = this.token.elt;
 							this.token = this.token.next;
 							try {
 								var al = this.psep(haxeparser_TokenKind.TkComma,$bind(this,this.expr));
 								var _g1 = this.peek(0);
-								if(_g1.kind[1] == 23) {
+								if(_g1.kind[1] == 21) {
 									this.last = this.token.elt;
 									this.token = this.token.next;
 									return this.exprNext({ expr : haxeparser_ExprDef.ENew(t,al), pos : haxeparser_HaxeParser.punion(p11,_g1.pos)});
@@ -3566,17 +3558,17 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 						this.last = this.token.elt;
 						this.token = this.token.next;
 						var _g2 = this.peek(0);
-						if(_g2.kind[1] == 22) {
+						if(_g2.kind[1] == 20) {
 							var pp = _g2.pos;
 							this.last = this.token.elt;
 							this.token = this.token.next;
 							var e = this.expr();
-							if(this.peek(0).kind[1] == 14) {
+							if(this.peek(0).kind[1] == 12) {
 								this.last = this.token.elt;
 								this.token = this.token.next;
 								var t1 = this.parseComplexType();
 								var _g3 = this.peek(0);
-								if(_g3.kind[1] == 23) {
+								if(_g3.kind[1] == 21) {
 									this.last = this.token.elt;
 									this.token = this.token.next;
 									return this.exprNext({ expr : haxeparser_ExprDef.ECast(e,t1), pos : haxeparser_HaxeParser.punion(p12,_g3.pos)});
@@ -3587,7 +3579,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 								try {
 									var t2 = this.parseTypeHint();
 									var _g4 = this.peek(0);
-									if(_g4.kind[1] == 23) {
+									if(_g4.kind[1] == 21) {
 										this.last = this.token.elt;
 										this.token = this.token.next;
 										var pu = haxeparser_HaxeParser.punion(p12,_g4.pos);
@@ -3599,7 +3591,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 									if (_2 instanceof js__$Boot_HaxeError) _2 = _2.val;
 									if( js_Boot.__instanceof(_2,hxparse_NoMatch) ) {
 										var _g5 = this.peek(0);
-										if(_g5.kind[1] == 23) {
+										if(_g5.kind[1] == 21) {
 											this.last = this.token.elt;
 											this.token = this.token.next;
 											var ep = this.exprNext({ expr : haxeparser_ExprDef.EParenthesis(e), pos : haxeparser_HaxeParser.punion(pp,_g5.pos)});
@@ -3636,11 +3628,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 							var inl = this.inlineFunction();
 							var name = this.parseOptional($bind(this,this.dollarIdent));
 							var pl = this.parseConstraintParams();
-							if(this.peek(0).kind[1] == 22) {
+							if(this.peek(0).kind[1] == 20) {
 								this.last = this.token.elt;
 								this.token = this.token.next;
 								var al1 = this.psep(haxeparser_TokenKind.TkComma,$bind(this,this.parseFunParam));
-								if(this.peek(0).kind[1] == 23) {
+								if(this.peek(0).kind[1] == 21) {
 									this.last = this.token.elt;
 									this.token = this.token.next;
 									var t3 = this.parseTypeOpt();
@@ -3664,11 +3656,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 										var p2 = _g6.pos;
 										this.last = this.token.elt;
 										this.token = this.token.next;
-										if(this.peek(0).kind[1] == 22) {
+										if(this.peek(0).kind[1] == 20) {
 											this.last = this.token.elt;
 											this.token = this.token.next;
 											var cond = this.expr();
-											if(this.peek(0).kind[1] == 23) {
+											if(this.peek(0).kind[1] == 21) {
 												this.last = this.token.elt;
 												this.token = this.token.next;
 												var e11 = this.expr();
@@ -3681,7 +3673,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 														e21 = this.expr();
 													} else {
 														var _g8 = this.peek(1);
-														if(this.peek(0).kind[1] == 12) {
+														if(this.peek(0).kind[1] == 10) {
 															if(_g8.kind[1] == 0) {
 																if(_g8.kind[2][1] == 4) {
 																	this.last = this.token.elt;
@@ -3701,7 +3693,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 													}
 												} else {
 													var _g9 = this.peek(1);
-													if(this.peek(0).kind[1] == 12) {
+													if(this.peek(0).kind[1] == 10) {
 														if(_g9.kind[1] == 0) {
 															if(_g9.kind[2][1] == 4) {
 																this.last = this.token.elt;
@@ -3731,11 +3723,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 										var p13 = _g6.pos;
 										this.last = this.token.elt;
 										this.token = this.token.next;
-										if(this.peek(0).kind[1] == 22) {
+										if(this.peek(0).kind[1] == 20) {
 											this.last = this.token.elt;
 											this.token = this.token.next;
 											var cond1 = this.expr();
-											if(this.peek(0).kind[1] == 23) {
+											if(this.peek(0).kind[1] == 21) {
 												this.last = this.token.elt;
 												this.token = this.token.next;
 												var e3 = this.secureExpr();
@@ -3757,11 +3749,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 											if(_g10.kind[2][1] == 5) {
 												this.last = this.token.elt;
 												this.token = this.token.next;
-												if(this.peek(0).kind[1] == 22) {
+												if(this.peek(0).kind[1] == 20) {
 													this.last = this.token.elt;
 													this.token = this.token.next;
 													var cond2 = this.expr();
-													if(this.peek(0).kind[1] == 23) {
+													if(this.peek(0).kind[1] == 21) {
 														this.last = this.token.elt;
 														this.token = this.token.next;
 														return { expr : haxeparser_ExprDef.EWhile(cond2,e4,false), pos : haxeparser_HaxeParser.punion(p14,e4.pos)};
@@ -3782,11 +3774,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 										var p3 = _g6.pos;
 										this.last = this.token.elt;
 										this.token = this.token.next;
-										if(this.peek(0).kind[1] == 22) {
+										if(this.peek(0).kind[1] == 20) {
 											this.last = this.token.elt;
 											this.token = this.token.next;
 											var it = this.expr();
-											if(this.peek(0).kind[1] == 23) {
+											if(this.peek(0).kind[1] == 21) {
 												this.last = this.token.elt;
 												this.token = this.token.next;
 												var e5 = this.secureExpr();
@@ -3817,12 +3809,12 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 										this.last = this.token.elt;
 										this.token = this.token.next;
 										var e7 = this.expr();
-										if(this.peek(0).kind[1] == 20) {
+										if(this.peek(0).kind[1] == 18) {
 											this.last = this.token.elt;
 											this.token = this.token.next;
 											var cases = this.parseSwitchCases();
 											var _g11 = this.peek(0);
-											if(_g11.kind[1] == 21) {
+											if(_g11.kind[1] == 19) {
 												this.last = this.token.elt;
 												this.token = this.token.next;
 												return { expr : haxeparser_ExprDef.ESwitch(e7,cases.cases,cases.def), pos : haxeparser_HaxeParser.punion(p15,_g11.pos)};
@@ -3926,13 +3918,13 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 					this.last = this.token.elt;
 					this.token = this.token.next;
 					return this.exprNext({ expr : haxeparser_ExprDef.EConst(_g.kind[2]), pos : _g.pos});
-				case 18:
+				case 16:
 					var p113 = _g.pos;
 					this.last = this.token.elt;
 					this.token = this.token.next;
 					var l = this.parseArrayDecl();
 					var _g13 = this.peek(0);
-					if(_g13.kind[1] == 19) {
+					if(_g13.kind[1] == 17) {
 						this.last = this.token.elt;
 						this.token = this.token.next;
 						return this.exprNext({ expr : haxeparser_ExprDef.EArrayDecl(l), pos : haxeparser_HaxeParser.punion(p113,_g13.pos)});
@@ -3940,13 +3932,13 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 						throw new js__$Boot_HaxeError(new hxparse_Unexpected(this.peek(0),this.stream.curPos()));
 					}
 					break;
-				case 20:
+				case 18:
 					var p114 = _g.pos;
 					this.last = this.token.elt;
 					this.token = this.token.next;
 					var b = this.block1();
 					var _g14 = this.peek(0);
-					if(_g14.kind[1] == 21) {
+					if(_g14.kind[1] == 19) {
 						this.last = this.token.elt;
 						this.token = this.token.next;
 						var e9 = { expr : b, pos : haxeparser_HaxeParser.punion(p114,_g14.pos)};
@@ -3959,13 +3951,13 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 						throw new js__$Boot_HaxeError(new hxparse_Unexpected(this.peek(0),this.stream.curPos()));
 					}
 					break;
-				case 22:
+				case 20:
 					var p115 = _g.pos;
 					this.last = this.token.elt;
 					this.token = this.token.next;
 					var e10 = this.expr();
 					var _g15 = this.peek(0);
-					if(_g15.kind[1] == 23) {
+					if(_g15.kind[1] == 21) {
 						this.last = this.token.elt;
 						this.token = this.token.next;
 						return this.exprNext({ expr : haxeparser_ExprDef.EParenthesis(e10), pos : haxeparser_HaxeParser.punion(p115,_g15.pos)});
@@ -3973,7 +3965,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 						try {
 							var t4 = this.parseTypeHint();
 							var _g16 = this.peek(0);
-							if(_g16.kind[1] == 23) {
+							if(_g16.kind[1] == 21) {
 								this.last = this.token.elt;
 								this.token = this.token.next;
 								return this.exprNext({ expr : haxeparser_ExprDef.ECheckType(e10,t4), pos : haxeparser_HaxeParser.punion(p115,_g16.pos)});
@@ -3993,11 +3985,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 						var inl1 = this.inlineFunction();
 						var name1 = this.parseOptional($bind(this,this.dollarIdent));
 						var pl1 = this.parseConstraintParams();
-						if(this.peek(0).kind[1] == 22) {
+						if(this.peek(0).kind[1] == 20) {
 							this.last = this.token.elt;
 							this.token = this.token.next;
 							var al2 = this.psep(haxeparser_TokenKind.TkComma,$bind(this,this.parseFunParam));
-							if(this.peek(0).kind[1] == 23) {
+							if(this.peek(0).kind[1] == 21) {
 								this.last = this.token.elt;
 								this.token = this.token.next;
 								var t5 = this.parseTypeOpt();
@@ -4021,11 +4013,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 									var p7 = _g17.pos;
 									this.last = this.token.elt;
 									this.token = this.token.next;
-									if(this.peek(0).kind[1] == 22) {
+									if(this.peek(0).kind[1] == 20) {
 										this.last = this.token.elt;
 										this.token = this.token.next;
 										var cond3 = this.expr();
-										if(this.peek(0).kind[1] == 23) {
+										if(this.peek(0).kind[1] == 21) {
 											this.last = this.token.elt;
 											this.token = this.token.next;
 											var e13 = this.expr();
@@ -4038,7 +4030,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 													e22 = this.expr();
 												} else {
 													var _g19 = this.peek(1);
-													if(this.peek(0).kind[1] == 12) {
+													if(this.peek(0).kind[1] == 10) {
 														if(_g19.kind[1] == 0) {
 															if(_g19.kind[2][1] == 4) {
 																this.last = this.token.elt;
@@ -4058,7 +4050,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 												}
 											} else {
 												var _g20 = this.peek(1);
-												if(this.peek(0).kind[1] == 12) {
+												if(this.peek(0).kind[1] == 10) {
 													if(_g20.kind[1] == 0) {
 														if(_g20.kind[2][1] == 4) {
 															this.last = this.token.elt;
@@ -4088,11 +4080,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 									var p116 = _g17.pos;
 									this.last = this.token.elt;
 									this.token = this.token.next;
-									if(this.peek(0).kind[1] == 22) {
+									if(this.peek(0).kind[1] == 20) {
 										this.last = this.token.elt;
 										this.token = this.token.next;
 										var cond4 = this.expr();
-										if(this.peek(0).kind[1] == 23) {
+										if(this.peek(0).kind[1] == 21) {
 											this.last = this.token.elt;
 											this.token = this.token.next;
 											var e14 = this.secureExpr();
@@ -4114,11 +4106,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 										if(_g21.kind[2][1] == 5) {
 											this.last = this.token.elt;
 											this.token = this.token.next;
-											if(this.peek(0).kind[1] == 22) {
+											if(this.peek(0).kind[1] == 20) {
 												this.last = this.token.elt;
 												this.token = this.token.next;
 												var cond5 = this.expr();
-												if(this.peek(0).kind[1] == 23) {
+												if(this.peek(0).kind[1] == 21) {
 													this.last = this.token.elt;
 													this.token = this.token.next;
 													return { expr : haxeparser_ExprDef.EWhile(cond5,e15,false), pos : haxeparser_HaxeParser.punion(p117,e15.pos)};
@@ -4139,11 +4131,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 									var p8 = _g17.pos;
 									this.last = this.token.elt;
 									this.token = this.token.next;
-									if(this.peek(0).kind[1] == 22) {
+									if(this.peek(0).kind[1] == 20) {
 										this.last = this.token.elt;
 										this.token = this.token.next;
 										var it1 = this.expr();
-										if(this.peek(0).kind[1] == 23) {
+										if(this.peek(0).kind[1] == 21) {
 											this.last = this.token.elt;
 											this.token = this.token.next;
 											var e16 = this.secureExpr();
@@ -4174,12 +4166,12 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 									this.last = this.token.elt;
 									this.token = this.token.next;
 									var e18 = this.expr();
-									if(this.peek(0).kind[1] == 20) {
+									if(this.peek(0).kind[1] == 18) {
 										this.last = this.token.elt;
 										this.token = this.token.next;
 										var cases1 = this.parseSwitchCases();
 										var _g22 = this.peek(0);
-										if(_g22.kind[1] == 21) {
+										if(_g22.kind[1] == 19) {
 											this.last = this.token.elt;
 											this.token = this.token.next;
 											return { expr : haxeparser_ExprDef.ESwitch(e18,cases1.cases,cases1.def), pos : haxeparser_HaxeParser.punion(p118,_g22.pos)};
@@ -4309,14 +4301,14 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 								return this.exprNext({ expr : haxeparser_ExprDef.EUnop(haxeparser_Unop.OpDecrement,true,e1), pos : haxeparser_HaxeParser.punion(e1.pos,_g2.pos)});
 							} else {
 								var _g3 = this.peek(0);
-								if(_g3.kind[1] == 20) {
+								if(_g3.kind[1] == 18) {
 									var p1 = _g3.pos;
 									if(haxeparser_HaxeParser.isDollarIdent(e1)) {
 										this.last = this.token.elt;
 										this.token = this.token.next;
 										var eparam = this.expr();
 										var _g4 = this.peek(0);
-										if(_g4.kind[1] == 21) {
+										if(_g4.kind[1] == 19) {
 											this.last = this.token.elt;
 											this.token = this.token.next;
 											var _g5 = e1.expr;
@@ -4341,14 +4333,14 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 							}
 						} else {
 							var _g6 = this.peek(0);
-							if(_g6.kind[1] == 20) {
+							if(_g6.kind[1] == 18) {
 								var p11 = _g6.pos;
 								if(haxeparser_HaxeParser.isDollarIdent(e1)) {
 									this.last = this.token.elt;
 									this.token = this.token.next;
 									var eparam1 = this.expr();
 									var _g7 = this.peek(0);
-									if(_g7.kind[1] == 21) {
+									if(_g7.kind[1] == 19) {
 										this.last = this.token.elt;
 										this.token = this.token.next;
 										var _g8 = e1.expr;
@@ -4381,14 +4373,14 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 							return this.exprNext({ expr : haxeparser_ExprDef.EUnop(haxeparser_Unop.OpDecrement,true,e1), pos : haxeparser_HaxeParser.punion(e1.pos,_g9.pos)});
 						} else {
 							var _g10 = this.peek(0);
-							if(_g10.kind[1] == 20) {
+							if(_g10.kind[1] == 18) {
 								var p12 = _g10.pos;
 								if(haxeparser_HaxeParser.isDollarIdent(e1)) {
 									this.last = this.token.elt;
 									this.token = this.token.next;
 									var eparam2 = this.expr();
 									var _g11 = this.peek(0);
-									if(_g11.kind[1] == 21) {
+									if(_g11.kind[1] == 19) {
 										this.last = this.token.elt;
 										this.token = this.token.next;
 										var _g12 = e1.expr;
@@ -4413,14 +4405,14 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 						}
 					} else {
 						var _g13 = this.peek(0);
-						if(_g13.kind[1] == 20) {
+						if(_g13.kind[1] == 18) {
 							var p13 = _g13.pos;
 							if(haxeparser_HaxeParser.isDollarIdent(e1)) {
 								this.last = this.token.elt;
 								this.token = this.token.next;
 								var eparam3 = this.expr();
 								var _g14 = this.peek(0);
-								if(_g14.kind[1] == 21) {
+								if(_g14.kind[1] == 19) {
 									this.last = this.token.elt;
 									this.token = this.token.next;
 									var _g15 = e1.expr;
@@ -4502,7 +4494,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 				return haxeparser_HaxeParser.makeBinop(_g.kind[2],e1,this.expr());
 			}
 			break;
-		case 13:
+		case 11:
 			var p = _g.pos;
 			this.last = this.token.elt;
 			this.token = this.token.next;
@@ -5020,11 +5012,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 				}
 			}
 			break;
-		case 16:
+		case 14:
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			var e21 = this.expr();
-			if(this.peek(0).kind[1] == 11) {
+			if(this.peek(0).kind[1] == 9) {
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				var e3 = this.expr();
@@ -5033,12 +5025,12 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 				throw new js__$Boot_HaxeError(new hxparse_Unexpected(this.peek(0),this.stream.curPos()));
 			}
 			break;
-		case 18:
+		case 16:
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			var e22 = this.expr();
 			var _g33 = this.peek(0);
-			if(_g33.kind[1] == 19) {
+			if(_g33.kind[1] == 17) {
 				this.last = this.token.elt;
 				this.token = this.token.next;
 				return this.exprNext({ expr : haxeparser_ExprDef.EArray(e1,e22), pos : haxeparser_HaxeParser.punion(e1.pos,_g33.pos)});
@@ -5046,13 +5038,13 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 				throw new js__$Boot_HaxeError(new hxparse_Unexpected(this.peek(0),this.stream.curPos()));
 			}
 			break;
-		case 22:
+		case 20:
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			try {
 				var params = this.parseCallParams();
 				var _g34 = this.peek(0);
-				if(_g34.kind[1] == 23) {
+				if(_g34.kind[1] == 21) {
 					this.last = this.token.elt;
 					this.token = this.token.next;
 					return this.exprNext({ expr : haxeparser_ExprDef.ECall(e1,params), pos : haxeparser_HaxeParser.punion(e1.pos,_g34.pos)});
@@ -5082,14 +5074,14 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 							return this.exprNext({ expr : haxeparser_ExprDef.EUnop(haxeparser_Unop.OpDecrement,true,e1), pos : haxeparser_HaxeParser.punion(e1.pos,_g36.pos)});
 						} else {
 							var _g37 = this.peek(0);
-							if(_g37.kind[1] == 20) {
+							if(_g37.kind[1] == 18) {
 								var p14 = _g37.pos;
 								if(haxeparser_HaxeParser.isDollarIdent(e1)) {
 									this.last = this.token.elt;
 									this.token = this.token.next;
 									var eparam4 = this.expr();
 									var _g38 = this.peek(0);
-									if(_g38.kind[1] == 21) {
+									if(_g38.kind[1] == 19) {
 										this.last = this.token.elt;
 										this.token = this.token.next;
 										var _g39 = e1.expr;
@@ -5114,14 +5106,14 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 						}
 					} else {
 						var _g40 = this.peek(0);
-						if(_g40.kind[1] == 20) {
+						if(_g40.kind[1] == 18) {
 							var p15 = _g40.pos;
 							if(haxeparser_HaxeParser.isDollarIdent(e1)) {
 								this.last = this.token.elt;
 								this.token = this.token.next;
 								var eparam5 = this.expr();
 								var _g41 = this.peek(0);
-								if(_g41.kind[1] == 21) {
+								if(_g41.kind[1] == 19) {
 									this.last = this.token.elt;
 									this.token = this.token.next;
 									var _g42 = e1.expr;
@@ -5154,14 +5146,14 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 						return this.exprNext({ expr : haxeparser_ExprDef.EUnop(haxeparser_Unop.OpDecrement,true,e1), pos : haxeparser_HaxeParser.punion(e1.pos,_g43.pos)});
 					} else {
 						var _g44 = this.peek(0);
-						if(_g44.kind[1] == 20) {
+						if(_g44.kind[1] == 18) {
 							var p16 = _g44.pos;
 							if(haxeparser_HaxeParser.isDollarIdent(e1)) {
 								this.last = this.token.elt;
 								this.token = this.token.next;
 								var eparam6 = this.expr();
 								var _g45 = this.peek(0);
-								if(_g45.kind[1] == 21) {
+								if(_g45.kind[1] == 19) {
 									this.last = this.token.elt;
 									this.token = this.token.next;
 									var _g46 = e1.expr;
@@ -5186,14 +5178,14 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 					}
 				} else {
 					var _g47 = this.peek(0);
-					if(_g47.kind[1] == 20) {
+					if(_g47.kind[1] == 18) {
 						var p17 = _g47.pos;
 						if(haxeparser_HaxeParser.isDollarIdent(e1)) {
 							this.last = this.token.elt;
 							this.token = this.token.next;
 							var eparam7 = this.expr();
 							var _g48 = this.peek(0);
-							if(_g48.kind[1] == 21) {
+							if(_g48.kind[1] == 19) {
 								this.last = this.token.elt;
 								this.token = this.token.next;
 								var _g49 = e1.expr;
@@ -5225,11 +5217,11 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 			if(_g.kind[2][1] == 3) {
 				this.last = this.token.elt;
 				this.token = this.token.next;
-				if(this.peek(0).kind[1] == 22) {
+				if(this.peek(0).kind[1] == 20) {
 					this.last = this.token.elt;
 					this.token = this.token.next;
 					var e = this.expr();
-					if(this.peek(0).kind[1] == 23) {
+					if(this.peek(0).kind[1] == 21) {
 						this.last = this.token.elt;
 						this.token = this.token.next;
 						return e;
@@ -5273,7 +5265,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 						this.token = this.token.next;
 						var el = this.psep(haxeparser_TokenKind.TkComma,$bind(this,this.expr));
 						var eg = this.parseOptional($bind(this,this.parseGuard));
-						if(this.peek(0).kind[1] == 11) {
+						if(this.peek(0).kind[1] == 9) {
 							this.last = this.token.elt;
 							this.token = this.token.next;
 							cases.push({ values : el, guard : eg, expr : caseBlock(this.block([]),p1)});
@@ -5285,7 +5277,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 						var p11 = _g.pos;
 						this.last = this.token.elt;
 						this.token = this.token.next;
-						if(this.peek(0).kind[1] == 11) {
+						if(this.peek(0).kind[1] == 9) {
 							this.last = this.token.elt;
 							this.token = this.token.next;
 							var e = caseBlock(this.block([]),p11);
@@ -5317,13 +5309,13 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 				var p = _g.pos;
 				this.last = this.token.elt;
 				this.token = this.token.next;
-				if(this.peek(0).kind[1] == 22) {
+				if(this.peek(0).kind[1] == 20) {
 					this.last = this.token.elt;
 					this.token = this.token.next;
 					var id = this.ident();
 					try {
 						var t = this.parseTypeHint();
-						if(this.peek(0).kind[1] == 23) {
+						if(this.peek(0).kind[1] == 21) {
 							this.last = this.token.elt;
 							this.token = this.token.next;
 							return { name : id.name, type : t, expr : this.secureExpr()};
@@ -5356,7 +5348,7 @@ haxeparser_HaxeParser.prototype = $extend(hxparse_Parser_$haxeparser_$HaxeTokenS
 				return [];
 			} else throw(_);
 		}
-		while(true) if(this.peek(0).kind[1] == 14) {
+		while(true) if(this.peek(0).kind[1] == 12) {
 			this.last = this.token.elt;
 			this.token = this.token.next;
 			ret.push(this.expr());
