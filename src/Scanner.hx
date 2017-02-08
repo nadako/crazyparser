@@ -212,6 +212,20 @@ class Scanner {
                 case "'".code | '"'.code:
                     return mk(TkString(scanString(ch)));
 
+                case "0".code:
+                    pos++;
+                    return mk(TkInt("0"));
+
+                case "1".code | "2".code | "3".code | "4".code | "5".code | "6".code | "7".code | "8".code | "9".code:
+                    pos++;
+                    while (pos < end) {
+                        var ch = text.fastCodeAt(pos);
+                        if (!isDigit(ch))
+                            break;
+                        pos++;
+                    }
+                    return mk(TkInt(text.substring(tokenStart, pos)));
+
                 case _ if (isIdentStart(ch)):
                     pos++;
                     while (pos < end) {
