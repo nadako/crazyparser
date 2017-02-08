@@ -17,4 +17,11 @@ enum TriviaKind {
     TrEol;
     TrLineComment;
     TrBlockComment;
+    TrIfDirective;
+    TrDisabledText;
+    TrElseDirective;
+    TrElseIfDirective;
+    TrEndDirective;
+    TrErrorDirective;
+    TrLineDirective;
 }
