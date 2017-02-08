@@ -156,6 +156,10 @@ class Scanner {
                         switch (text.fastCodeAt(pos)) {
                             case ">".code:
                                 pos++;
+                                if (pos < end && text.fastCodeAt(pos) == ">".code) {
+                                    pos++;
+                                    return mk(TkGtGtGt);
+                                }
                                 return mk(TkGtGt);
                             case "=".code:
                                 pos++;
@@ -204,6 +208,30 @@ class Scanner {
                         }
                     }
                     return mk(TkPercent);
+
+                case "&".code:
+                    pos++;
+                    if (pos < end) {
+                        switch (text.fastCodeAt(pos)) {
+                            case "&".code:
+                                pos++;
+                                return mk(TkAmpAmp);
+                            default:
+                        }
+                    }
+                    return mk(TkAmp);
+
+                case "|".code:
+                    pos++;
+                    if (pos < end) {
+                        switch (text.fastCodeAt(pos)) {
+                            case "|".code:
+                                pos++;
+                                return mk(TkBarBar);
+                            default:
+                        }
+                    }
+                    return mk(TkBar);
 
                 case ".".code:
                     pos++;

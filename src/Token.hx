@@ -31,6 +31,7 @@ enum TokenKind {
     TkLtEquals;
     TkGt;
     TkGtGt;
+    TkGtGtGt;
     TkGtEquals;
     TkColon;
     TkSemicolon;
@@ -57,4 +58,8 @@ enum TokenKind {
     TkExcEquals;
     TkPercent;
     TkPercentEquals;
+    TkAmp;
+    TkAmpAmp;
+    TkBar;
+    TkBarBar;
 }
