@@ -296,7 +296,7 @@ class Scanner {
                     var directive = scanDirective();
                     if (directive == null)
                         return mk(TkUnknown);
-                    pushTrivia(mkTrivia(processDirective(directive)));
+                    pushTrivia(processDirective(directive));
                     continue;
 
                 case _ if (isIdentStart(ch)):
@@ -405,15 +405,22 @@ class Scanner {
     }
 
     function processDirective(id) {
-        return switch (id) {
-            case "if": TrIfDirective;
-            case "elseif": TrElseIfDirective;
-            case "else": TrElseDirective;
-            case "end": TrEndDirective;
-            case "error": TrErrorDirective;
-            case "line": TrLineDirective;
-            default: TrUnknownDirective;
-        }
+        return mkTrivia(switch (id) {
+            case "if":
+                TrIfDirective;
+            case "elseif":
+                TrElseIfDirective;
+            case "else":
+                TrElseDirective;
+            case "end":
+                TrEndDirective;
+            case "error":
+                TrErrorDirective;
+            case "line":
+                TrLineDirective;
+            default:
+                TrUnknownDirective;
+        });
     }
 
     function scanLineComment() {
@@ -502,7 +509,7 @@ class Scanner {
                     var directive = scanDirective();
                     if (directive == null)
                         break;
-                    pushTrivia(mkTrivia(processDirective(directive)));
+                    pushTrivia(processDirective(directive));
                     continue;
 
                 default:
