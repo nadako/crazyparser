@@ -164,11 +164,19 @@ class Scanner {
                     return mk(TkIdent(text.substring(tokenStart, pos)));
 
                 default:
-                    trace('Unknown token: ${text.charAt(pos)}');
+                    addError('Unknown token: ${text.charAt(pos)}');
                     pos++;
                     return mk(TkUnknown);
             }
         }
+    }
+
+    public dynamic function handleError(text:String, pos:Position) {
+        trace('$text $pos');
+    }
+
+    inline function addError(text:String) {
+        handleError(text, new Position(tokenStart, pos));
     }
 
     function scanLineComment() {
@@ -193,7 +201,7 @@ class Scanner {
             pos++;
         }
         if (!terminated)
-            trace("Unterminated block comment");
+            addError("Unterminated block comment");
         return mkTrivia(TrBlockComment);
     }
 

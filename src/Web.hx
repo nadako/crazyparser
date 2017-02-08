@@ -5,9 +5,12 @@ class Web {
     static function main() {
         var code:TextAreaElement = cast document.getElementById("code");
         var tree:PreElement = cast document.getElementById("tree");
+        var error:PreElement = cast document.getElementById("errors");
 
         function update() {
+            var errors = [];
             var scanner = new Scanner(code.value);
+            scanner.handleError = function(text, pos) errors.push('$text <span class="pos">$pos</span>');
             var tokens = [];
             var token;
             do {
@@ -25,6 +28,7 @@ class Web {
                 }
             } while (token.kind != TkEof);
             tree.innerHTML = tokens.join("\n");
+            error.innerHTML = errors.join("\n");
         }
 
         code.oninput = update;
