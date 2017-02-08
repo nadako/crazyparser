@@ -156,9 +156,20 @@ class Scanner {
                         switch (text.fastCodeAt(pos)) {
                             case ">".code:
                                 pos++;
-                                if (pos < end && text.fastCodeAt(pos) == ">".code) {
-                                    pos++;
-                                    return mk(TkGtGtGt);
+                                if (pos < end) {
+                                    switch (text.fastCodeAt(pos)) {
+                                        case ">".code:
+                                            pos++;
+                                            if (pos < end && text.fastCodeAt(pos) == "=".code) {
+                                                pos++;
+                                                return mk(TkGtGtGtEquals);
+                                            }
+                                            return mk(TkGtGtGt);
+                                        case "=".code:
+                                            pos++;
+                                            return mk(TkGtGtEquals);
+                                        default:
+                                    }
                                 }
                                 return mk(TkGtGt);
                             case "=".code:
@@ -215,7 +226,14 @@ class Scanner {
                         switch (text.fastCodeAt(pos)) {
                             case "&".code:
                                 pos++;
+                                if (pos < end && text.fastCodeAt(pos) == "=".code) {
+                                    pos++;
+                                    return mk(TkAmpAmpEquals);
+                                }
                                 return mk(TkAmpAmp);
+                            case "=".code:
+                                pos++;
+                                return mk(TkAmpEquals);
                             default:
                         }
                     }
@@ -227,7 +245,14 @@ class Scanner {
                         switch (text.fastCodeAt(pos)) {
                             case "|".code:
                                 pos++;
+                                if (pos < end && text.fastCodeAt(pos) == "=".code) {
+                                    pos++;
+                                    return mk(TkBarBarEquals);
+                                }
                                 return mk(TkBarBar);
+                            case "=".code:
+                                pos++;
+                                return mk(TkBarEquals);
                             default:
                         }
                     }
