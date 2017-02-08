@@ -295,15 +295,11 @@ class Scanner {
                     }
                     return mk(TkInt(text.substring(tokenStart, pos)));
 
+                case "#".code:
+                    return scanDirective();
+
                 case _ if (isIdentStart(ch)):
-                    pos++;
-                    while (pos < end) {
-                        var ch = text.fastCodeAt(pos);
-                        if (!isIdentPart(ch))
-                            break;
-                        pos++;
-                    }
-                    return mk(TkIdent(text.substring(tokenStart, pos)));
+                    return mk(TkIdent(scanIdent()));
 
                 default:
                     addError('Unknown token: ${text.charAt(pos)}');
@@ -319,6 +315,17 @@ class Scanner {
 
     inline function addError(text:String) {
         handleError(text, new Position(tokenStart, pos));
+    }
+
+    function scanIdent() {
+        pos++;
+        while (pos < end) {
+            var ch = text.fastCodeAt(pos);
+            if (!isIdentPart(ch))
+                break;
+            pos++;
+        }
+        return text.substring(tokenStart, pos);
     }
 
     function scanString(quoteChar:Int) {
@@ -370,6 +377,36 @@ class Scanner {
                 addError("Invalid escape sequence");
                 "";
         }
+    }
+
+    function scanDirective() {
+        pos++;
+        while (true) {
+            if (pos >= end) {
+                addError("Unterminated directive");
+                return mk(TkEof);
+            }
+            var ch = text.fastCodeAt(pos);
+            if (isIdentStart(ch)) {
+                var directive = scanIdent();
+                switch (directive) {
+                    case "#if":
+                    case "#elseif":
+                    case "#else":
+                    case "#end":
+                    case "#error":
+                    case "#line":
+                    default:
+                        addError('Unsupported directive `$directive`');
+                        return mk(TkUnknown);
+                }
+                addError('TODO `$directive`');
+                break;
+            } else {
+                break;
+            }
+        }
+        return mk(TkUnknown);
     }
 
     function scanLineComment() {
