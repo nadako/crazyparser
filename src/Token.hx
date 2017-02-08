@@ -39,6 +39,7 @@ enum TokenKind {
     TkColon;
     TkSemicolon;
     TkDot;
+    TkDotDotDot;
     TkComma;
     TkEquals;
     TkEqualsEquals;

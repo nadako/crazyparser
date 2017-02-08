@@ -260,6 +260,10 @@ class Scanner {
 
                 case ".".code:
                     pos++;
+                    if (pos + 1 < end && text.fastCodeAt(pos) == ".".code && text.fastCodeAt(pos + 1) == ".".code) {
+                        pos += 2;
+                        return mk(TkDotDotDot);
+                    }
                     return mk(TkDot);
 
                 case ",".code:
