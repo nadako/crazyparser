@@ -318,6 +318,7 @@ class Scanner {
     }
 
     function scanIdent() {
+        var start = pos;
         pos++;
         while (pos < end) {
             var ch = text.fastCodeAt(pos);
@@ -325,7 +326,7 @@ class Scanner {
                 break;
             pos++;
         }
-        return text.substring(tokenStart, pos);
+        return text.substring(start, pos);
     }
 
     function scanString(quoteChar:Int) {
@@ -381,32 +382,31 @@ class Scanner {
 
     function scanDirective() {
         pos++;
-        while (true) {
-            if (pos >= end) {
-                addError("Unterminated directive");
-                return mk(TkEof);
-            }
-            var ch = text.fastCodeAt(pos);
-            if (isIdentStart(ch)) {
-                var directive = scanIdent();
-                switch (directive) {
-                    case "#if":
-                    case "#elseif":
-                    case "#else":
-                    case "#end":
-                    case "#error":
-                    case "#line":
-                    default:
-                        addError('Unsupported directive `$directive`');
-                        return mk(TkUnknown);
-                }
-                addError('TODO `$directive`');
-                break;
-            } else {
-                break;
-            }
+        if (pos >= end) {
+            addError("Unterminated directive");
+            return mk(TkUnknown);
         }
-        return mk(TkUnknown);
+
+        var ch = text.fastCodeAt(pos);
+        if (isIdentStart(ch)) {
+            var directive = scanIdent();
+            switch (directive) {
+                case "if":
+                case "elseif":
+                case "else":
+                case "end":
+                case "error":
+                case "line":
+                default:
+                    addError('Unsupported directive `$directive`');
+                    return mk(TkUnknown);
+            }
+            addError('TODO `$directive`');
+            return mk(TkUnknown);
+        } else {
+            addError("Unterminated directive");
+            return mk(TkUnknown);
+        }
     }
 
     function scanLineComment() {
