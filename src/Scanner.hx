@@ -313,8 +313,9 @@ class Scanner {
         trace('$text $pos');
     }
 
-    inline function addError(text:String) {
-        handleError(text, new Position(tokenStart, pos));
+    inline function addError(text:String, ?start) {
+        if (start == null) start = tokenStart;
+        handleError(text, new Position(start, pos));
     }
 
     function scanIdent() {
@@ -392,17 +393,35 @@ class Scanner {
             var directive = scanIdent();
             switch (directive) {
                 case "if":
+                    var token = scan();
+                    switch (token.kind) {
+                        case TkIdent(define):
+                            trace("Checking define " + define);
+                            addError('TODO #error');
+                            return scan();
+                        default:
+                            addError("#if condition expected", token.pos.start);
+                            return token;
+                    }
                 case "elseif":
+                    addError('TODO #elseif');
+                    return scan();
                 case "else":
+                    addError('TODO #else');
+                    return scan();
                 case "end":
+                    addError('TODO #end');
+                    return scan();
                 case "error":
+                    addError('TODO #error');
+                    return scan();
                 case "line":
+                    addError('TODO #line');
+                    return scan();
                 default:
                     addError('Unsupported directive `$directive`');
                     return mk(TkUnknown);
             }
-            addError('TODO `$directive`');
-            return mk(TkUnknown);
         } else {
             addError("Unterminated directive");
             return mk(TkUnknown);
