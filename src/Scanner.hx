@@ -283,14 +283,7 @@ class Scanner {
                     return mk(TkInt("0"));
 
                 case "1".code | "2".code | "3".code | "4".code | "5".code | "6".code | "7".code | "8".code | "9".code:
-                    pos++;
-                    while (pos < end) {
-                        var ch = text.fastCodeAt(pos);
-                        if (!isDigit(ch))
-                            break;
-                        pos++;
-                    }
-                    return mk(TkInt(text.substring(tokenStart, pos)));
+                    return mk(TkInt(scanInteger()));
 
                 case "#".code:
                     var directive = scanDirective();
@@ -330,6 +323,18 @@ class Scanner {
         while (pos < end) {
             var ch = text.fastCodeAt(pos);
             if (!isIdentPart(ch))
+                break;
+            pos++;
+        }
+        return text.substring(start, pos);
+    }
+
+    function scanInteger() {
+        var start = pos;
+        pos++;
+        while (pos < end) {
+            var ch = text.fastCodeAt(pos);
+            if (!isDigit(ch))
                 break;
             pos++;
         }
@@ -408,12 +413,16 @@ class Scanner {
         return mkTrivia(switch (id) {
             case "if":
                 TrIfDirective;
+
             case "elseif":
                 TrElseIfDirective;
+
             case "else":
                 TrElseDirective;
+
             case "end":
                 TrEndDirective;
+
             case "error":
                 var msg = null;
                 var errorStart = tokenStart;
@@ -432,9 +441,31 @@ class Scanner {
                 }
                 addError(if (msg == null) "Not implemented" else msg, errorStart);
                 TrErrorDirective(msg);
+
             case "line":
-                TrLineDirective;
+                var line = -1;
+                while (pos < end) {
+                    var ch = text.fastCodeAt(pos);
+                    switch (ch) {
+                        case "\n".code | "\r".code | " ".code | "\t".code:
+                            pos++;
+                        case "0".code:
+                            pos++;
+                            line = 0;
+                            break;
+                        case "1".code | "2".code | "3".code | "4".code | "5".code | "6".code | "7".code | "8".code | "9".code:
+                            line = Std.parseInt(scanInteger());
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                if (line == -1)
+                    addError("Unterminated #line directive");
+                TrLineDirective(line);
+
             default:
+                addError("Unknown directive: #" + id);
                 TrUnknownDirective;
         });
     }
