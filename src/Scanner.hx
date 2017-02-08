@@ -193,6 +193,18 @@ class Scanner {
                     }
                     return mk(TkExc);
 
+                case "%".code:
+                    pos++;
+                    if (pos < end) {
+                        switch (text.fastCodeAt(pos)) {
+                            case "=".code:
+                                pos++;
+                                return mk(TkPercentEquals);
+                            default:
+                        }
+                    }
+                    return mk(TkPercent);
+
                 case ".".code:
                     pos++;
                     return mk(TkDot);

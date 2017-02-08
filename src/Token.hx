@@ -55,4 +55,6 @@ enum TokenKind {
     TkCaretEquals;
     TkExc;
     TkExcEquals;
+    TkPercent;
+    TkPercentEquals;
 }
