@@ -467,6 +467,11 @@ class Scanner {
 
     function scanTrailTrivia():Array<Trivia> {
         var result = null;
+        inline function pushTrivia(t) {
+            if (result == null) result = [];
+            result.push(t);
+        }
+
         while (true) {
             tokenStart = pos;
             if (pos >= end)
@@ -475,13 +480,11 @@ class Scanner {
             var ch = text.fastCodeAt(pos);
             switch (ch) {
                 case " ".code | "\t".code:
-                    if (result == null) result = [];
-                    result.push(scanWhitespace());
+                    pushTrivia(scanWhitespace());
                     continue;
 
                 case "\r".code | "\n".code:
-                    if (result == null) result = [];
-                    result.push(scanEol(ch));
+                    pushTrivia(scanEol(ch));
                     break;
 
                 case "/".code:
@@ -489,13 +492,11 @@ class Scanner {
                         switch (text.fastCodeAt(pos + 1)) {
                             case "/".code:
                                 pos++;
-                                if (result == null) result = [];
-                                result.push(scanLineComment());
+                                pushTrivia(scanLineComment());
                                 continue;
                             case "*".code:
                                 pos++;
-                                if (result == null) result = [];
-                                result.push(scanBlockComment());
+                                pushTrivia(scanBlockComment());
                                 continue;
                             default:
                         }
@@ -506,8 +507,7 @@ class Scanner {
                     var directive = scanDirective();
                     if (directive == null)
                         break;
-                    if (result == null) result = [];
-                    result.push(mkTrivia(directive));
+                    pushTrivia(mkTrivia(directive));
                     continue;
 
                 default:
