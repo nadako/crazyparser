@@ -38,6 +38,9 @@ class Scanner {
                             case "=".code:
                                 pos++;
                                 return mk(TkEqualsEquals);
+                            case ">".code:
+                                pos++;
+                                return mk(TkEqualsGt);
                             default:
                         }
                     }
@@ -68,6 +71,9 @@ class Scanner {
                             case "-".code:
                                 pos++;
                                 return mk(TkMinusMinus);
+                            case ">".code:
+                                pos++;
+                                return mk(TkMinusGt);
                             default:
                         }
                     }
@@ -131,10 +137,32 @@ class Scanner {
 
                 case "<".code:
                     pos++;
+                    if (pos < end) {
+                        switch (text.fastCodeAt(pos)) {
+                            case "<".code:
+                                pos++;
+                                return mk(TkLtLt);
+                            case "=".code:
+                                pos++;
+                                return mk(TkLtEquals);
+                            default:
+                        }
+                    }
                     return mk(TkLt);
 
                 case ">".code:
                     pos++;
+                    if (pos < end) {
+                        switch (text.fastCodeAt(pos)) {
+                            case ">".code:
+                                pos++;
+                                return mk(TkGtGt);
+                            case "=".code:
+                                pos++;
+                                return mk(TkGtEquals);
+                            default:
+                        }
+                    }
                     return mk(TkGt);
 
                 case ".".code:
