@@ -22,7 +22,7 @@ enum TriviaKind {
     TrElseDirective;
     TrElseIfDirective;
     TrEndDirective;
-    TrErrorDirective;
+    TrErrorDirective(error:Null<String>);
     TrLineDirective;
     TrUnknownDirective;
 }

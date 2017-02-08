@@ -415,7 +415,23 @@ class Scanner {
             case "end":
                 TrEndDirective;
             case "error":
-                TrErrorDirective;
+                var msg = null;
+                var errorStart = tokenStart;
+                while (pos < end) {
+                    var ch = text.fastCodeAt(pos);
+                    switch (ch) {
+                        case "\n".code | "\r".code | " ".code | "\t".code:
+                            pos++;
+                        case "'".code | '"'.code:
+                            errorStart = pos;
+                            msg = scanString(ch);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                addError(if (msg == null) "Not implemented" else msg, errorStart);
+                TrErrorDirective(msg);
             case "line":
                 TrLineDirective;
             default:
