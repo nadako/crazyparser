@@ -1,0 +1,14 @@
+sudo: required
+dist: trusty
+
+language: haxe
+
+os:
+  - linux
+
+haxe:
+  - 3.4.0
+
+script:
+  - haxe build-web.hxml
+  - bash deploy-web.sh
