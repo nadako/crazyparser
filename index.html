@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <title>Crazy parser</title>
+    <meta charset="utf-8">
+    <style>
+        #main, #tree {
+            width: 100%;
+        }
+        .token {
+            color: green;
+        }
+        .token-unknown {
+            background-color: lightcoral;
+        }
+        .pos {
+            color: darkmagenta;
+        }
+        .trivia {
+            color: darkred;
+        }
+        td {
+            vertical-align: top;
+        }
+        #errors {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<table id="main">
+    <tr>
+        <td>
+            <p>Code:</p>
+            <textarea id="code" cols="100" rows="40">hello(); // hi indeed</textarea>
+        </td>
+        <td style="width: 100%">
+            <p>Tokens:</p>
+            <pre id="errors"></pre>
+            <pre id="tree"></pre>
+        </td>
+    </tr>
+</table>
+
+<script src="web.js"></script>
+</body>
+</html>
