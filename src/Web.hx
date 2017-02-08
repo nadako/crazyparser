@@ -15,7 +15,7 @@ class Web {
             var token;
             do {
                 token = scanner.scan();
-                tokens.push('<span class="token">${token.kind} <span class="pos">${token.pos}</span></span>');
+                tokens.push('<span class="token${if (token.kind == TkUnknown) " token-unknown" else ""}">${token.kind} <span class="pos">${token.pos}</span></span>');
                 if (token.leadTrivia != null) {
                     tokens.push("  Lead trivia:");
                     for (trivia in token.leadTrivia)
