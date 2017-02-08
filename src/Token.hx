@@ -18,6 +18,7 @@ enum TokenKind {
     TkEof;
     TkUnknown;
     TkIdent(ident:String);
+    TkString(string:String);
     TkBraceOpen;
     TkBraceClose;
     TkParenOpen;

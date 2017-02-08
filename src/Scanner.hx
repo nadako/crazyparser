@@ -209,6 +209,9 @@ class Scanner {
                     pos++;
                     return mk(TkSemicolon);
 
+                case "'".code | '"'.code:
+                    return mk(TkString(scanString(ch)));
+
                 case _ if (isIdentStart(ch)):
                     pos++;
                     while (pos < end) {
@@ -233,6 +236,57 @@ class Scanner {
 
     inline function addError(text:String) {
         handleError(text, new Position(tokenStart, pos));
+    }
+
+    function scanString(quoteChar:Int) {
+        pos++;
+        var result = "";
+        var start = pos;
+        while (true) {
+            if (pos >= end) {
+                addError("Unterminated string");
+                result += text.substring(start, pos);
+                break;
+            }
+            var ch = text.fastCodeAt(pos);
+            if (ch == quoteChar) {
+                result += text.substring(start, pos);
+                pos++;
+                break;
+            } else if (ch == "\\".code) {
+                result += text.substring(start, pos);
+                result += scanEscapeSequence();
+                start = pos;
+            } else {
+                pos++;
+            }
+        }
+        return result;
+    }
+
+    function scanEscapeSequence() {
+        pos++;
+        if (pos >= end) {
+            addError("Unterminated escape sequence");
+            return "";
+        }
+        var ch = text.fastCodeAt(pos);
+        pos++;
+        return switch (ch) {
+            case "t".code:
+                "\t";
+            case "n".code:
+                "\n";
+            case "r".code:
+                "\r";
+            case '"'.code:
+                '\"';
+            case "'".code:
+                "\'";
+            default:
+                addError("Invalid escape sequence");
+                "";
+        }
     }
 
     function scanLineComment() {
