@@ -296,7 +296,7 @@ class Scanner {
                     var directive = scanDirective();
                     if (directive == null)
                         return mk(TkUnknown);
-                    pushTrivia(mkTrivia(directive));
+                    pushTrivia(mkTrivia(processDirective(directive)));
                     continue;
 
                 case _ if (isIdentStart(ch)):
@@ -387,7 +387,7 @@ class Scanner {
         }
     }
 
-    function scanDirective():Null<TriviaKind> {
+    function scanDirective():Null<String> {
         pos++;
 
         if (pos >= end) {
@@ -397,27 +397,22 @@ class Scanner {
 
         var ch = text.fastCodeAt(pos);
         if (isIdentStart(ch)) {
-            var directive = scanIdent();
-            return switch (directive) {
-                case "if":
-                    TrIfDirective;
-                case "elseif":
-                    TrElseIfDirective;
-                case "else":
-                    TrElseDirective;
-                case "end":
-                    TrEndDirective;
-                case "error":
-                    TrErrorDirective;
-                case "line":
-                    TrLineDirective;
-                default:
-                    addError('Unsupported directive `$directive`');
-                    TrUnknownDirective;
-            }
+            return scanIdent();
         } else {
             addError("Unterminated directive");
             return null;
+        }
+    }
+
+    function processDirective(id) {
+        return switch (id) {
+            case "if": TrIfDirective;
+            case "elseif": TrElseIfDirective;
+            case "else": TrElseDirective;
+            case "end": TrEndDirective;
+            case "error": TrErrorDirective;
+            case "line": TrLineDirective;
+            default: TrUnknownDirective;
         }
     }
 
@@ -507,7 +502,7 @@ class Scanner {
                     var directive = scanDirective();
                     if (directive == null)
                         break;
-                    pushTrivia(mkTrivia(directive));
+                    pushTrivia(mkTrivia(processDirective(directive)));
                     continue;
 
                 default:
