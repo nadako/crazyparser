@@ -165,6 +165,34 @@ class Scanner {
                     }
                     return mk(TkGt);
 
+                case "~".code:
+                    pos++;
+                    return mk(TkTilde);
+
+                case "^".code:
+                    pos++;
+                    if (pos < end) {
+                        switch (text.fastCodeAt(pos)) {
+                            case "=".code:
+                                pos++;
+                                return mk(TkCaretEquals);
+                            default:
+                        }
+                    }
+                    return mk(TkCaret);
+
+                case "!".code:
+                    pos++;
+                    if (pos < end) {
+                        switch (text.fastCodeAt(pos)) {
+                            case "=".code:
+                                pos++;
+                                return mk(TkExcEquals);
+                            default:
+                        }
+                    }
+                    return mk(TkExc);
+
                 case ".".code:
                     pos++;
                     return mk(TkDot);

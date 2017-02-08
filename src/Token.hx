@@ -48,4 +48,9 @@ enum TokenKind {
     TkAsteriskEquals;
     TkSlash;
     TkSlashEquals;
+    TkTilde;
+    TkCaret;
+    TkCaretEquals;
+    TkExc;
+    TkExcEquals;
 }
