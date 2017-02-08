@@ -1,3 +1,4 @@
+import Trivia;
 using StringTools;
 
 class Scanner {
@@ -292,7 +293,11 @@ class Scanner {
                     return mk(TkInt(text.substring(tokenStart, pos)));
 
                 case "#".code:
-                    return scanDirective();
+                    var directive = scanDirective();
+                    if (directive == null)
+                        return mk(TkUnknown);
+                    pushTrivia(mkTrivia(directive));
+                    continue;
 
                 case _ if (isIdentStart(ch)):
                     return mk(TkIdent(scanIdent()));
@@ -382,65 +387,37 @@ class Scanner {
         }
     }
 
-    function scanDirective() {
-        var start = tokenStart;
+    function scanDirective():Null<TriviaKind> {
         pos++;
+
         if (pos >= end) {
             addError("Unterminated directive");
-            return mk(TkUnknown);
+            return null;
         }
 
         var ch = text.fastCodeAt(pos);
         if (isIdentStart(ch)) {
             var directive = scanIdent();
-            switch (directive) {
+            return switch (directive) {
                 case "if":
-                    var currentTrivia = trivia;
-                    trivia = null;
-
-                    var token = scan();
-                    switch (token.kind) {
-                        case TkIdent(define):
-                            trace("Checking define " + define);
-                            addError('TODO #if');
-                            trivia = if (currentTrivia != null) currentTrivia else [];
-                            trivia.push(new Trivia(new Position(start, token.pos.end), TrIfDirective));
-                            if (token.trailTrivia != null) {
-                                trivia = trivia.concat(token.trailTrivia);
-                                token.trailTrivia = null;
-                            }
-                            return scan();
-                        default:
-                            addError("#if condition expected", token.pos.start);
-                            return token;
-                    }
+                    TrIfDirective;
                 case "elseif":
-                    addError('TODO #elseif');
-                    pushTrivia(mkTrivia(TrElseIfDirective));
-                    return scan();
+                    TrElseIfDirective;
                 case "else":
-                    addError('TODO #else');
-                    pushTrivia(mkTrivia(TrElseDirective));
-                    return scan();
+                    TrElseDirective;
                 case "end":
-                    addError('TODO #end');
-                    pushTrivia(mkTrivia(TrEndDirective));
-                    return scan();
+                    TrEndDirective;
                 case "error":
-                    addError('TODO #error');
-                    pushTrivia(mkTrivia(TrErrorDirective));
-                    return scan();
+                    TrErrorDirective;
                 case "line":
-                    addError('TODO #line');
-                    pushTrivia(mkTrivia(TrLineDirective));
-                    return scan();
+                    TrLineDirective;
                 default:
                     addError('Unsupported directive `$directive`');
-                    return mk(TkUnknown);
+                    TrUnknownDirective;
             }
         } else {
             addError("Unterminated directive");
-            return mk(TkUnknown);
+            return null;
         }
     }
 
@@ -524,6 +501,14 @@ class Scanner {
                         }
                     }
                     break;
+
+                case "#".code:
+                    var directive = scanDirective();
+                    if (directive == null)
+                        break;
+                    if (result == null) result = [];
+                    result.push(mkTrivia(directive));
+                    continue;
 
                 default:
                     break;

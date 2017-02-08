@@ -24,4 +24,5 @@ enum TriviaKind {
     TrEndDirective;
     TrErrorDirective;
     TrLineDirective;
+    TrUnknownDirective;
 }
