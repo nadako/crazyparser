@@ -11,4 +11,5 @@ haxe:
 
 script:
   - haxe build-web.hxml
-  - bash deploy-web.sh
+  - cd web
+  - bash deploy.sh
